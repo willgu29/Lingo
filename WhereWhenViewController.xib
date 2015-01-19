@@ -22,7 +22,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="When do you prefer to eat?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xc4-dr-vCV">
-                    <rect key="frame" x="55" y="269" width="210" height="21"/>
+                    <rect key="frame" x="55" y="257" width="210" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -31,13 +31,13 @@
                     <rect key="frame" x="0.0" y="76" width="320" height="162"/>
                 </pickerView>
                 <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="b2d-bq-uU5">
-                    <rect key="frame" x="0.0" y="310" width="320" height="162"/>
+                    <rect key="frame" x="0.0" y="288" width="320" height="162"/>
                     <date key="date" timeIntervalSinceReferenceDate="443387377.28448403">
                         <!--2015-01-19 19:09:37 +0000-->
                     </date>
                 </datePicker>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QEI-mj-GiU">
-                    <rect key="frame" x="144" y="492" width="32" height="30"/>
+                    <rect key="frame" x="144" y="462" width="32" height="30"/>
                     <state key="normal" title="YAY!">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>

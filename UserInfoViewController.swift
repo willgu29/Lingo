@@ -1,5 +1,5 @@
 //
-//  MessagingViewController.swift
+//  UserInfoViewController.swift
 //  Lingo
 //
 //  Created by William Gu on 1/19/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MessagingViewController: UIViewController {
+class UserInfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,11 +21,6 @@ class MessagingViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func doneButton(){
-        var feedbackVC = FeedbackViewController(nibName:"FeedbackViewController", bundle:nil);
-        self.navigationController?.pushViewController(feedbackVC, animated: true);
-
-    }
 
     /*
     // MARK: - Navigation

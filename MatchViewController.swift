@@ -12,7 +12,6 @@ class MatchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -24,7 +23,7 @@ class MatchViewController: UIViewController {
     @IBAction func messageButton() {
         //Layer SDK or Parse SDK or Personal Implementation?
         var messagingVC = MessagingViewController(nibName:"MessagingViewController", bundle:nil);
-        self.presentViewController(messagingVC, animated: true, completion: nil);
+        self.navigationController?.pushViewController(messagingVC, animated: true);
     }
     
     /*

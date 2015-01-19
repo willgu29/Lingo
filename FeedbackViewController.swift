@@ -27,6 +27,7 @@ class FeedbackViewController: UIViewController {
     
     @IBAction func roundTwoButton() {
         //Go back to start
+        self.navigationController?.popToRootViewControllerAnimated(true);
     }
     
     /*
