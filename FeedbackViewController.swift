@@ -1,5 +1,5 @@
 //
-//  IntroViewController.swift
+//  FeedbackViewController.swift
 //  Lingo
 //
 //  Created by William Gu on 1/19/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IntroViewController: UIViewController {
+class FeedbackViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,12 +21,14 @@ class IntroViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func goButton() {
-        var whereWhenVC = WhereWhenViewController(nibName:"WhereWhenViewController", bundle:nil);
-//        var navigationController = UINavigationController(rootViewController: whereWhenVC);
-        self.presentViewController(whereWhenVC, animated: true, completion: nil);
+    @IBAction func feedbackButton() {
+        //Present mail option
     }
-
+    
+    @IBAction func roundTwoButton() {
+        //Go back to start
+    }
+    
     /*
     // MARK: - Navigation
 

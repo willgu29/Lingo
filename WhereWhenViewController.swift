@@ -27,6 +27,9 @@ class WhereWhenViewController: UIViewController {
     
     @IBAction func yayButton() {
         //Puts user in queue based on decided location and time
+        var matchVC = MatchViewController(nibName:"MatchViewController", bundle:nil);
+//        self.navigationController?.pushViewController(matchVC, animated: true);
+        self.presentViewController(matchVC, animated: true, completion: nil);
     }
 
     /*
