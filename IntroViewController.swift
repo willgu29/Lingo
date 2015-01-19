@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IntroViewController: UIViewController {
+class IntroViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,12 +24,16 @@ class IntroViewController: UIViewController {
     @IBAction func goButton() {
         var whereWhenVC = WhereWhenViewController(nibName:"WhereWhenViewController", bundle:nil);
         var navigationController = UINavigationController(rootViewController: whereWhenVC);
-        var userinfoVC = UserInfoViewController(nibName:"UserInfoViewController", bundle:nil);
-        var tabBarVC = UITabBarController();
-        tabBarVC.viewControllers = [navigationController, userinfoVC];
+//        var userinfoVC = UserInfoViewController(nibName:"UserInfoViewController", bundle:nil);
+//        var tabBarVC = UITabBarController();
+//        tabBarVC.viewControllers = [navigationController, userinfoVC];
         self.presentViewController(navigationController, animated: true, completion: nil);
     }
 
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        //Save name
+    }
     /*
     // MARK: - Navigation
 
