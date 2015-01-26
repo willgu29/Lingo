@@ -25,7 +25,7 @@
         if (!success) {
             NSLog(@"Failed to connect to Layer: %@", error);
         } else {
-            NSString *userIDString = @"REPLACE_WITH_YOUR_USER_ID";
+            NSString *userIDString = @"TestUser";
             // Once connected, authenticate user.
             // Check Authenticate step for authenticateLayerWithUserID source
             [self authenticateLayerWithUserID:userIDString completion:^(BOOL success, NSError *error) {
@@ -46,7 +46,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch
 
-    IntroViewController *introVC = [[IntroViewController alloc] init];
+    IntroViewController *introVC = [[IntroViewController alloc] initWithNibName:@"IntroViewController" bundle:nil];
     
     self.window.rootViewController = introVC;
     self.window.backgroundColor = [UIColor whiteColor];
