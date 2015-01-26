@@ -30,10 +30,16 @@ class IntroViewController: UIViewController, UITextFieldDelegate {
         self.presentViewController(navigationController, animated: true, completion: nil);
     }
 
+    @IBAction func takeASelf() {
+        
+    }
     
     func textFieldDidEndEditing(textField: UITextField) {
         //Save name
+        
     }
+    
+ 
     /*
     // MARK: - Navigation
 

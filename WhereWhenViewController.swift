@@ -18,7 +18,11 @@ class WhereWhenViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.navigationController?.navigationBarHidden = true;
-
+        
+    }
+    
+    func setupValuesOfPickers() {
+        datePicker?.minimumDate = NSDate() //current date and time
     }
 
     override func didReceiveMemoryWarning() {
