@@ -22,8 +22,9 @@ class MatchViewController: UIViewController {
     
     @IBAction func messageButton() {
         //Layer SDK or Parse SDK or Personal Implementation?
-        var messagingVC = MessagingViewController(nibName:"MessagingViewController", bundle:nil);
-        self.navigationController?.pushViewController(messagingVC, animated: true);
+        var messageVC = MessageViewController(nibName:"MessageViewController", bundle:nil);
+//        var messagingVC = MessagingViewController(nibName:"MessagingViewController", bundle:nil);
+        self.navigationController?.pushViewController(messageVC, animated: true);
     }
     
     /*

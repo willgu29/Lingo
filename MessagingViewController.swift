@@ -8,11 +8,16 @@
 
 import UIKit
 
-class MessagingViewController: UIViewController, UITextFieldDelegate {
+//USE MESSAGE VIEW CONTROLLER INSTEAD ********
+
+class MessagingViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
 
     
-    @IBOutlet var textField: UITextField?
-    var conversation: LYRConversation!
+    @IBOutlet var textField: UITextField!
+    @IBOutlet var tableView: UITableView!
+    var queryController: LYRQueryController?
+    var sendMessageObject: SendMessages = SendMessages()
+//    var conversation: LYRConversation!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +28,21 @@ class MessagingViewController: UIViewController, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        
     }
+//    
+//    func fetchLayerConversation()
+//    {
+//        var query: LYRQuery = LYRQuery().queryableClass
+//        query.predicate = LYRPredicate.p
+//    }
+    
+    
+    //IBACTIONS
     
     @IBAction func sendButton(){
         //Send message
-        sendMessage(textField?.text)
+        sendMessageObject.sendMessage(textField.text)
         
     }
     
@@ -37,38 +52,40 @@ class MessagingViewController: UIViewController, UITextFieldDelegate {
 
     }
 
-    func sendMessage(messageText: String!)
-    {
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-
-        //if no convo exists, create it w/ a single participant
-        if (self.conversation == nil)
-        {
-            var error: NSError? = nil;
-            let set = NSSet(array: ["TestUser"]);
-            
-            self.conversation = appDelegate.layerClient.newConversationWithParticipants(set, options: nil, error: &error);
-            if (self.conversation == nil)
-            {
-                NSLog("New conversation created failed: %@", error!);
-            }
-        }
-        var messagePart = LYRMessagePart(text: messageText);
-        //Create and return new message object for convo
-        var message = appDelegate.layerClient.newMessageWithParts([messagePart], options: [LYRMessageOptionsPushNotificationAlertKey: messageText], error: nil);
-        //send specified message
-        var error: NSError?
-        var success: Bool? = self.conversation?.sendMessage(message, error: &error)
-        if (success == true)
-        {
-            NSLog("Message queued to be sent: %@",messageText);
-        }
-        else
-        {
-            NSLog("Message send failed: %@", error!);
-        }
+    
+    //RESIGN KEYBOARD METHODS
+    
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        NSLog("Touch Began");
+        resignKeyboard()
     }
     
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+        textField.resignFirstResponder()
+        return true;
+    }
+    
+    func resignKeyboard()
+    {
+        textField.resignFirstResponder()
+       
+    }
+    
+    //TABLEVIEW DELEGATE METHODS
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1;
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Default");
+        cell.textLabel?.text = "SUP";
+        return cell;
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
     
     /*
     // MARK: - Navigation
