@@ -19,7 +19,7 @@
     //LAYER KIT
     
     
-    NSUUID *appID = [[NSUUID alloc] initWithUUIDString:@"3ef42c06-691e-11e4-a9e9-1ded000000e6"];
+    NSUUID *appID = [[NSUUID alloc] initWithUUIDString:@"806c1028-a013-11e4-a3db-285a000000f4"];
     self.layerClient = [LYRClient clientWithAppID:appID];
     [self.layerClient connectWithCompletion:^(BOOL success, NSError *error) {
         if (!success) {

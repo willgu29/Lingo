@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MessagingViewController" customModule="Lingo" customModuleProvider="target">
             <connections>
+                <outlet property="textField" destination="c9N-W4-vG4" id="Jyw-LV-nda"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -46,6 +47,23 @@
                     </state>
                     <connections>
                         <action selector="doneButton" destination="-1" eventType="touchUpInside" id="XJy-1c-DG5"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Things to say: SUP, HEYO, HI..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c9N-W4-vG4">
+                    <rect key="frame" x="16" y="393" width="234" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="j10-qx-PmM"/>
+                    </connections>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPi-79-zzT">
+                    <rect key="frame" x="258" y="393" width="36" height="30"/>
+                    <state key="normal" title="Send">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="sendButton" destination="-1" eventType="touchUpInside" id="fdF-iI-56V"/>
                     </connections>
                 </button>
             </subviews>
