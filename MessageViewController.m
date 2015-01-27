@@ -22,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    _sendMessageObject = [[SendMessages alloc] init];
     // Fetches all conversations between the authenticated user and the supplied participant
     [self fetchLayerConversation];
 }
@@ -37,6 +38,7 @@
 
 -(IBAction)sendButton:(UIButton *)sender
 {
+    
     [_sendMessageObject sendMessage:_textField.text];
 }
 
