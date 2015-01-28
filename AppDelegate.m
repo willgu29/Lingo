@@ -9,12 +9,41 @@
 #import "AppDelegate.h"
 #import "Lingo-Swift.h"
 #import <LayerKit/LayerKit.h>
+#import <Parse/Parse.h>
 
 @implementation AppDelegate
 
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    
+    
+    //PARSE KIT
+    
+    [Parse enableLocalDatastore];
+    
+    // Initialize Parse.
+    [Parse setApplicationId:@"JxRcxaBlRovUP8BpmdUCRDvifa6IM9kHh9y5kVG2"
+                  clientKey:@"C4DQQQotZzVIKaPM1SxuQUMTtYG3CBrGRBag4ZRM"];
+    
+    // [Optional] Track statistics around application opens.
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    
+    //**************
+    
+    
+    //PUSH NOTIFICATIONS
+    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                    UIUserNotificationTypeBadge |
+                                                    UIUserNotificationTypeSound);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                             categories:nil];
+    [application registerUserNotificationSettings:settings];
+    [application registerForRemoteNotifications];
+    
+    //***************
     
     //LAYER KIT
     
@@ -40,6 +69,7 @@
     
     //**************
     
+
     
     
     
@@ -65,6 +95,15 @@
     
     return nil;
 }
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Store the deviceToken in the current Installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

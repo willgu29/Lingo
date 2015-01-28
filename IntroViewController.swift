@@ -10,6 +10,9 @@ import UIKit
 
 class IntroViewController: UIViewController, UITextFieldDelegate {
 
+    
+    @IBOutlet var textField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,24 +25,52 @@ class IntroViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func goButton() {
-        var whereWhenVC = WhereWhenViewController(nibName:"WhereWhenViewController", bundle:nil);
-        var navigationController = UINavigationController(rootViewController: whereWhenVC);
-//        var userinfoVC = UserInfoViewController(nibName:"UserInfoViewController", bundle:nil);
-//        var tabBarVC = UITabBarController();
-//        tabBarVC.viewControllers = [navigationController, userinfoVC];
-        self.presentViewController(navigationController, animated: true, completion: nil);
+        
+        
+        if (textField.text.isEmpty)
+        {
+            //Alert: Please enter a name!
+        }
+        else
+        {
+            //Save name
+        }
+        
     }
 
     @IBAction func takeASelf() {
         
     }
     
+    func saveName()
+    {
+        NSUserDefaults.standardUserDefaults().setValue(textField.text, forKey: "name");
+        
+    }
+    
+    
+    func presentNextViewController()
+    {
+        var whereWhenVC = WhereWhenViewController(nibName:"WhereWhenViewController", bundle:nil);
+        var navigationController = UINavigationController(rootViewController: whereWhenVC);
+        self.presentViewController(navigationController, animated: true, completion: nil);
+    }
+    
+    
     func textFieldDidEndEditing(textField: UITextField) {
         //Save name
         
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        resignFirstResponder()
+        return true;
+    }
  
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        resignFirstResponder()
+    }
+    
     /*
     // MARK: - Navigation
 
