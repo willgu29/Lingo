@@ -10,6 +10,7 @@
 #import "Lingo-Swift.h"
 #import <LayerKit/LayerKit.h>
 #import <Parse/Parse.h>
+#import "NSDataConvert.h"
 
 @implementation AppDelegate
 
@@ -20,7 +21,7 @@
     
     
     //PARSE KIT
-    
+//    
     [Parse enableLocalDatastore];
     
     // Initialize Parse.
@@ -45,32 +46,6 @@
     
     //***************
     
-    //LAYER KIT
-    
-    
-    NSUUID *appID = [[NSUUID alloc] initWithUUIDString:@"806c1028-a013-11e4-a3db-285a000000f4"];
-    self.layerClient = [LYRClient clientWithAppID:appID];
-    [self.layerClient connectWithCompletion:^(BOOL success, NSError *error) {
-        if (!success) {
-            NSLog(@"Failed to connect to Layer: %@", error);
-        } else {
-            NSString *userIDString = @"TestUser";
-            // Once connected, authenticate user.
-            // Check Authenticate step for authenticateLayerWithUserID source
-            [self authenticateLayerWithUserID:userIDString completion:^(BOOL success, NSError *error) {
-                if (!success) {
-                    NSLog(@"Failed Authenticating Layer Client with error:%@", error);
-                }
-            }];
-        }
-    }];
-    
-    
-    
-    //**************
-    
-
-    
     
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -92,8 +67,37 @@
 
 -(NSString *)generateUserIDString
 {
+    NSLog(@"Generating Unique ID");
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
+}
+
+-(void)activiateLayer
+{
+    //LAYER KIT
     
-    return nil;
+    
+    NSUUID *appID = [[NSUUID alloc] initWithUUIDString:@"806c1028-a013-11e4-a3db-285a000000f4"];
+    self.layerClient = [LYRClient clientWithAppID:appID];
+    [self.layerClient connectWithCompletion:^(BOOL success, NSError *error) {
+        if (!success) {
+            NSLog(@"Failed to connect to Layer: %@", error);
+        } else {
+            //            NSString *userIDString = @"TestUser";
+            NSString *userIDString = [self generateUserIDString];
+            // Once connected, authenticate user.
+            // Check Authenticate step for authenticateLayerWithUserID source
+            [self authenticateLayerWithUserID:userIDString completion:^(BOOL success, NSError *error) {
+                if (!success) {
+                    NSLog(@"Failed Authenticating Layer Client with error:%@", error);
+                }
+            }];
+        }
+    }];
+    
+    
+    
+    //**************
+    
 }
 
 - (void)application:(UIApplication *)application
@@ -102,6 +106,11 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
     [currentInstallation saveInBackground];
+    
+    NSLog(@"Device token: %@", deviceToken);
+    NSString *hexadecimalString = [deviceToken hexadecimalString];
+    [[NSUserDefaults standardUserDefaults] setObject:hexadecimalString forKey:@"deviceToken"];
+    [self activiateLayer];
 }
 
 

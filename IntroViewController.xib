@@ -5,8 +5,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IntroViewController" customModule="Lingo" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IntroViewController" customModule="Lingo">
             <connections>
+                <outlet property="textField" destination="P7l-Uw-T0A" id="hyz-wx-9vA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,6 +16,9 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="background1" translatesAutoresizingMaskIntoConstraints="NO" id="B3R-um-GHu">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome to Lingo!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X65-c4-tpe">
                     <rect key="frame" x="89" y="52" width="143" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -38,7 +42,7 @@
                     </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="What your friends call you...." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P7l-Uw-T0A">
-                    <rect key="frame" x="62" y="301" width="196" height="30"/>
+                    <rect key="frame" x="62" y="301" width="200" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
@@ -55,14 +59,11 @@
                         <action selector="takeASelf" destination="-1" eventType="touchUpInside" id="xGV-zH-TJK"/>
                     </connections>
                 </button>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="lingoText1x" translatesAutoresizingMaskIntoConstraints="NO" id="yp9-H9-Byu">
-                    <rect key="frame" x="161" y="177" width="151" height="71"/>
-                </imageView>
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="overlaySquare" translatesAutoresizingMaskIntoConstraints="NO" id="BJx-20-L8c">
                     <rect key="frame" x="129" y="359" width="63" height="52"/>
                 </imageView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="background1" translatesAutoresizingMaskIntoConstraints="NO" id="Jgc-qn-4bk">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="lingoText" translatesAutoresizingMaskIntoConstraints="NO" id="wL8-IO-KJt">
+                    <rect key="frame" x="155" y="174" width="151" height="71"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -72,7 +73,7 @@
     <resources>
         <image name="background1" width="320" height="568"/>
         <image name="cameraIcon" width="40" height="32"/>
-        <image name="lingoText1x" width="151" height="71"/>
+        <image name="lingoText" width="151" height="71"/>
         <image name="overlaySquare" width="63" height="52"/>
     </resources>
 </document>

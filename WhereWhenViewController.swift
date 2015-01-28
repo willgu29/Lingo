@@ -8,15 +8,16 @@
 
 import UIKit
 
-class WhereWhenViewController: UIViewController {
+class WhereWhenViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var datePicker: UIDatePicker?
     @IBOutlet weak var diningHallPicker: UIPickerView?
-    
+    var dataSourcePicker: NSArray = ["De Neve", "B Plate", "Feast", "Covel", "Rende", "Cafe 1919", "B Cafe"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        datePicker?.datePickerMode = UIDatePickerMode.CountDownTimer;
         self.navigationController?.navigationBarHidden = true;
         
     }
@@ -35,15 +36,27 @@ class WhereWhenViewController: UIViewController {
         var matchVC = MatchViewController(nibName:"MatchViewController", bundle:nil);
         self.navigationController?.pushViewController(matchVC, animated: true);
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    
+    //Dining Hall Picker
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        //Save dining hall
     }
-    */
-
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        return dataSourcePicker.objectAtIndex(row) as String;
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return dataSourcePicker.count;
+    }
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1;
+    }
+    //*********************
+    
+    //Date Picker
+    
+    
 }

@@ -34,6 +34,7 @@ class IntroViewController: UIViewController, UITextFieldDelegate {
         else
         {
             //Save name
+            self.saveName()
         }
         
     }
@@ -45,7 +46,7 @@ class IntroViewController: UIViewController, UITextFieldDelegate {
     func saveName()
     {
         NSUserDefaults.standardUserDefaults().setValue(textField.text, forKey: "name");
-        
+        self.addDataToParse();
     }
     
     
@@ -70,6 +71,20 @@ class IntroViewController: UIViewController, UITextFieldDelegate {
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         resignFirstResponder()
     }
+    
+    func addDataToParse()
+    {
+        var userInfo = PFObject(className: "Users")
+        var deviceToken: NSString! = NSUserDefaults.standardUserDefaults().objectForKey("deviceToken") as NSString;
+        var userName: NSString = NSUserDefaults.standardUserDefaults().objectForKey("name") as NSString;
+        userInfo.setObject(deviceToken, forKey: "deviceToken")
+        userInfo.setObject(userName, forKey: "name")
+        userInfo.setObject(-1, forKey: "status");
+        userInfo.setObject(-1, forKey: "time");
+        userInfo.setObject(-1, forKey: "diningHall");
+        userInfo.save()
+    }
+
     
     /*
     // MARK: - Navigation
