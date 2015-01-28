@@ -17,7 +17,7 @@ class WhereWhenViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        datePicker?.datePickerMode = UIDatePickerMode.CountDownTimer;
+//        datePicker?.datePickerMode = UIDatePickerMode.CountDownTimer;
         self.navigationController?.navigationBarHidden = true;
         
     }
@@ -33,6 +33,8 @@ class WhereWhenViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     @IBAction func yayButton() {
         //Puts user in queue based on decided location and time
+        //Send to server
+        
         var matchVC = MatchViewController(nibName:"MatchViewController", bundle:nil);
         self.navigationController?.pushViewController(matchVC, animated: true);
     }
@@ -43,9 +45,13 @@ class WhereWhenViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         //Save dining hall
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return dataSourcePicker.objectAtIndex(row) as String;
+    func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let dataString = dataSourcePicker.objectAtIndex(row) as String;
+        return NSAttributedString(string: dataString, attributes: [NSForegroundColorAttributeName:UIColor.whiteColor()])
     }
+//    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+//        return dataSourcePicker.objectAtIndex(row) as String;
+//    }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return dataSourcePicker.count;

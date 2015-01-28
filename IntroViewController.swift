@@ -35,6 +35,7 @@ class IntroViewController: UIViewController, UITextFieldDelegate {
         {
             //Save name
             self.saveName()
+            self.presentNextViewController()
         }
         
     }
@@ -64,12 +65,13 @@ class IntroViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        resignFirstResponder()
+        textField.resignFirstResponder()
         return true;
     }
  
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        resignFirstResponder()
+        NSLog("Touches Began");
+        textField.resignFirstResponder();
     }
     
     func addDataToParse()
@@ -82,7 +84,14 @@ class IntroViewController: UIViewController, UITextFieldDelegate {
         userInfo.setObject(-1, forKey: "status");
         userInfo.setObject(-1, forKey: "time");
         userInfo.setObject(-1, forKey: "diningHall");
-        userInfo.save()
+        userInfo.saveInBackgroundWithBlock {
+            (success: Bool!, error: NSError!) -> Void in
+            if (success != nil) {
+                NSLog("Object created with id: \(userInfo.objectId)")
+            } else {
+                NSLog("%@", error)
+            }
+        }
     }
 
     

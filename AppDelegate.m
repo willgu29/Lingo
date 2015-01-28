@@ -51,13 +51,25 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch
 
-    IntroViewController *introVC = [[IntroViewController alloc] initWithNibName:@"IntroViewController" bundle:nil];
+    NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
+    if (username)
+    {
+        //Present main VC
+        WhereWhenViewController *whereVC = [[WhereWhenViewController alloc] initWithNibName:@"WhereWhenViewController" bundle:nil];
+        self.window.rootViewController = whereVC;
+    }
+    else
+    {
+        //New user
+        IntroViewController *introVC = [[IntroViewController alloc] initWithNibName:@"IntroViewController" bundle:nil];
+        
+        self.window.rootViewController = introVC;
+    }
     
-    self.window.rootViewController = introVC;
+    
+    
+    
     self.window.backgroundColor = [UIColor whiteColor];
-    
- 
-    
     [self.window makeKeyAndVisible];
     
     

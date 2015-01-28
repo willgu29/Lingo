@@ -20,33 +20,27 @@
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="background2" translatesAutoresizingMaskIntoConstraints="NO" id="3yb-i0-WWw">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Where do you prefer to eat?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57X-Vs-YUu">
-                    <rect key="frame" x="53" y="57" width="215" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="let's meet in:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57X-Vs-YUu">
+                    <rect key="frame" x="42" y="63" width="145" height="28"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="When do you prefer to eat?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xc4-dr-vCV">
-                    <rect key="frame" x="55" y="257" width="210" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="at:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xc4-dr-vCV">
+                    <rect key="frame" x="159" y="273" width="28" height="21"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mqU-Xs-HWh">
-                    <rect key="frame" x="0.0" y="76" width="320" height="162"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="eXh-CM-BO9"/>
-                        <outlet property="delegate" destination="-1" id="bMk-Tv-GFl"/>
-                    </connections>
-                </pickerView>
-                <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="b2d-bq-uU5">
-                    <rect key="frame" x="0.0" y="288" width="320" height="162"/>
-                    <date key="date" timeIntervalSinceReferenceDate="443387377.28448403">
-                        <!--2015-01-19 19:09:37 +0000-->
+                <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2d-bq-uU5">
+                    <rect key="frame" x="42" y="99" width="270" height="162"/>
+                    <date key="date" timeIntervalSinceReferenceDate="256723200.28448403">
+                        <!--2009-02-19 08:00:00 +0000-->
                     </date>
                 </datePicker>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QEI-mj-GiU">
-                    <rect key="frame" x="144" y="462" width="32" height="30"/>
+                    <rect key="frame" x="134" y="452" width="53" height="40"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <state key="normal" title="YAY!">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -55,9 +49,17 @@
                         <action selector="yayButton" destination="-1" eventType="touchUpInside" id="Buu-eP-dYQ"/>
                     </connections>
                 </button>
+                <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mqU-Xs-HWh">
+                    <rect key="frame" x="110" y="297" width="202" height="162"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="eXh-CM-BO9"/>
+                        <outlet property="delegate" destination="-1" id="bMk-Tv-GFl"/>
+                    </connections>
+                </pickerView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="139" y="146"/>
         </view>
     </objects>
     <resources>
