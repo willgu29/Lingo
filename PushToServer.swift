@@ -24,20 +24,19 @@ enum DiningHalls: Int {
 
 class PushToServer: NSObject {
    
-    
-    var diningHall: Int?
+    //These values will be set in WhereWhenViewController via pickers
+    var diningHall: Int = 0; //Defaulted at De Neve 
     var countdownHours: Int?
     var countdownMinutes: Int?
     
-    func getDiningHall() {
-        
-    }
     
-    func getTimeToMeet() {
-        
-    }
     
     func pushDataToServer() {
+        NSLog("Dining Hall: %d, In hours: %d, in min: %d", diningHall, countdownHours!, countdownMinutes!)
+        
+    }
+    
+    func pushToParse() {
         
     }
     
