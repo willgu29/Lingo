@@ -56,7 +56,8 @@
     {
         //Present main VC
         WhereWhenViewController *whereVC = [[WhereWhenViewController alloc] initWithNibName:@"WhereWhenViewController" bundle:nil];
-        self.window.rootViewController = whereVC;
+        UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:whereVC];
+        self.window.rootViewController = navVC;
     }
     else
     {
