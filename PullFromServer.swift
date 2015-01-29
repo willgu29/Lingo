@@ -10,5 +10,8 @@ import UIKit
 
 class PullFromServer: NSObject {
    
-
+    func fetchFromServerCloseTimes()
+    {
+        
+    }
 }
