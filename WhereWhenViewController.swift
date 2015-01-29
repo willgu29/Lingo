@@ -24,6 +24,7 @@ class WhereWhenViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     func setupValuesOfPickers() {
+        datePicker.timeZone = NSTimeZone.localTimeZone()
         datePicker?.minimumDate = NSDate() //current date and time
     }
 
@@ -47,9 +48,9 @@ class WhereWhenViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         var durationInt: Int = Int(duration);
         var hours: Int = durationInt/3600
         var minutes: Int = ((durationInt - (hours*3600))/60)
+        pushToServerObject.countdownInterval = duration;
         pushToServerObject.countdownHours = hours;
         pushToServerObject.countdownMinutes = minutes;
-        NSLog("%d, %d, %d",duration, hours,minutes);
     }
     
     

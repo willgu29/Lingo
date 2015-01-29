@@ -76,13 +76,17 @@ class IntroViewController: UIViewController, UITextFieldDelegate {
     
     func addDataToParse()
     {
+        
+        var currentLocale = NSLocale.currentLocale()
+        var currentDate = NSDate().descriptionWithLocale(currentLocale)
+        
         var userInfo = PFObject(className: "Users")
         var deviceToken: NSString! = NSUserDefaults.standardUserDefaults().objectForKey("deviceToken") as NSString;
         var userName: NSString = NSUserDefaults.standardUserDefaults().objectForKey("name") as NSString;
         userInfo.setObject(deviceToken, forKey: "deviceToken")
         userInfo.setObject(userName, forKey: "name")
         userInfo.setObject(-1, forKey: "status");
-        userInfo.setObject(-1, forKey: "time");
+        userInfo.setObject(currentDate, forKey: "timeDate");
         userInfo.setObject(-1, forKey: "diningHall");
         userInfo.saveInBackgroundWithBlock {
             (success: Bool!, error: NSError!) -> Void in

@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum UserStatus: Int {
+    case notDining = -1
+    case scheduled = 1
+    case inMessaging = 2
+}
 
 enum DiningHalls: Int {
     
@@ -26,18 +31,43 @@ class PushToServer: NSObject {
    
     //These values will be set in WhereWhenViewController via pickers
     var diningHall: Int = 0; //Defaulted at De Neve 
+    var countdownInterval: NSTimeInterval?
     var countdownHours: Int?
     var countdownMinutes: Int?
     
     
     
     func pushDataToServer() {
-        NSLog("Dining Hall: %d, In hours: %d, in min: %d", diningHall, countdownHours!, countdownMinutes!)
-        
+        NSLog("Dining Hall: %d, In hours: %d, in min: %d, in duration: %d", diningHall, countdownHours!, countdownMinutes!, countdownInterval!)
+        self.pushToParse()
     }
     
     func pushToParse() {
+        var query = PFQuery(className: "Users");
+        var deviceToken: NSString = NSUserDefaults.standardUserDefaults().objectForKey("deviceToken") as NSString
+        query.whereKey("deviceToken", equalTo: deviceToken);
+        var objectFetched = query.getFirstObject()
+        objectFetched.setObject(1, forKey: "status")
         
+        var laterDate: NSDate = NSDate(timeInterval: self.countdownInterval!, sinceDate: NSDate())
+        
+        //ALL NSDATES ARE IN GMT TIME ZONE. ASSUME GMT TIME ZONE.
+//        var currentLocale = NSLocale.currentLocale()
+//        var laterDateCurrentLocale = laterDate.descriptionWithLocale(currrentLocale)
+        
+        NSLog("Date: %@, Now Date: %@", laterDate, NSDate())
+        
+        objectFetched.setObject(laterDate, forKey: "timeDate");
+        
+        objectFetched.setObject(self.diningHall, forKey: "diningHall");
+        objectFetched.saveInBackgroundWithBlock {
+            (success: Bool!, error: NSError!) -> Void in
+            if (success != nil) {
+                NSLog("Object created with id: \(objectFetched.objectId)")
+            } else {
+                NSLog("%@", error)
+            }
+        }
     }
     
     
