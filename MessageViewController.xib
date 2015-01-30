@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MessageViewController">
             <connections>
+                <outlet property="diningHallLabel" destination="yGF-2a-csB" id="ier-4W-e6c"/>
+                <outlet property="nameLabel" destination="YpN-c1-ovw" id="HwV-EK-5rT"/>
                 <outlet property="tableView" destination="TDM-LB-xc6" id="Sww-DY-dOV"/>
                 <outlet property="textField" destination="dEJ-CE-jBX" id="VQB-8m-ABK"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

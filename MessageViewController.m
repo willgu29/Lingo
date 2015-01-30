@@ -10,6 +10,7 @@
 #import "Lingo-Swift.h"
 #import "CreateConversation.h"
 #import "AppDelegate.h"
+#import "ConvertDiningHallNumberToString.h"
 @interface MessageViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *textField;
@@ -17,20 +18,79 @@
 //@property (strong, nonatomic) SendMessages *sendMessageObject;
 @property (strong, nonatomic) CreateConversation *createConversationObject;
 
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *diningHallLabel;
+
 @end
 
 @implementation MessageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-//    _sendMessageObject = [[SendMessages alloc] init];
+
     _createConversationObject = [[CreateConversation alloc] init];
-//    [_createConversationObject createConversationWith:@"TestUser"];
-//    [_createConversationObject testMessage];
+    
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    if (delegate.dataObject.clientType == 1)
+    {
+        [self queryForConversationWith:delegate.dataObject.deviceTokenOther];
+    }
+    else if (delegate.dataObject.clientType == 2)
+    {
+        [_createConversationObject createDefaultConversationWith:delegate.dataObject.deviceTokenOther];
+    }
+    else
+    {
+        //FATAL ERROR
+    }
+    
+    
+
+    
+    
     // Fetches all conversations between the authenticated user and the supplied participant
     [self fetchLayerConversation];
 }
+
+#pragma mark - Client Type 2 Methods
+
+-(void)queryForConversationWith:(NSString *)deviceTokenOther
+{
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    NSString *deviceTokenSelf = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
+    LYRQuery *query = [LYRQuery queryWithClass:[LYRConversation class]];
+    query.predicate = [LYRPredicate predicateWithProperty:@"participants" operator:LYRPredicateOperatorIsEqualTo value:@[deviceTokenSelf, deviceTokenOther, @"Simulator", @"Dashboard" ]];
+    
+    query.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO] ];
+    
+    NSError *error;
+    NSOrderedSet *conversations = [delegate.layerClient executeQuery:query error:&error];
+    if (!error) {
+        NSLog(@"%tu conversations with participants %@", conversations.count, @[ @"<PARTICIPANT>" ]);
+    } else {
+        NSLog(@"Query failed with error %@", error);
+    }
+    
+    
+    // Retrieve the last conversation
+    if (conversations.count) {
+        _createConversationObject.conversation = [conversations lastObject];
+        [self setupLabelValues];
+        NSLog(@"Get last conversation object: %@",_createConversationObject.conversation.identifier);
+        // setup query controller with messages from last conversation
+        [self setupQueryController];
+    }
+}
+
+-(void)setupLabelValues
+{
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    
+    _nameLabel.text = [NSString stringWithFormat:@"%@ would like to eat at: ", delegate.dataObject.usernameOther];
+    _diningHallLabel.text = [ConvertDiningHallNumberToString returnDiningHallStringFromInt:delegate.dataObject.diningHallOtherAsStringInt.intValue];
+    
+}
+
 
 #pragma mark - IBAction
 
@@ -43,10 +103,8 @@
 
 -(IBAction)sendButton:(UIButton *)sender
 {
-//    [_createConversationObject sendMessage:_textField.text];
-    [_createConversationObject testMessage];
-    [self fetchLayerConversation];
-//    [_sendMessageObject sendMessage:_textField.text];
+    [_createConversationObject sendMessage:_textField.text];
+//    [_createConversationObject testMessage];
 }
 
 #pragma mark - UITextField

@@ -12,9 +12,10 @@
 @interface CreateConversation : NSObject
 
 @property (strong, nonatomic) LYRConversation *conversation;
--(void)createConversationWith:(NSString *)deviceToken;
+//-(void)createConversationWith:(NSString *)deviceToken;
 -(void)sendMessage:(NSString *)textString;
--(void)layerDefaultConversation;
--(void)testMessage;
+-(void)createDefaultConversationWith:(NSString *)deviceTokenOther;
+
+
 
 @end

@@ -67,7 +67,7 @@
         self.window.rootViewController = introVC;
     }
     
-    
+    _dataObject = [[UserData alloc] init];
     
     
     self.window.backgroundColor = [UIColor whiteColor];

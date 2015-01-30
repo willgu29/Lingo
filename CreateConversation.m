@@ -23,6 +23,16 @@
     
 }
 
+//CLIENT TWO CALL
+-(void)createDefaultConversationWith:(NSString *)deviceTokenOther
+{
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    NSError *error = nil;
+    _conversation = [delegate.layerClient newConversationWithParticipants:[NSSet setWithArray:@[deviceTokenOther, @"Simulator", @ "Dashboard" ]] options:nil error:&error];
+}
+
+
+
 -(void)layerDefaultConversation
 {
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;

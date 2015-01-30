@@ -23,6 +23,11 @@ class WhereWhenViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        var delegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate;
+        delegate.dataObject.clientType = 0;
+    }
+    
     func setupValuesOfPickers() {
         datePicker.timeZone = NSTimeZone.localTimeZone()
         datePicker?.minimumDate = NSDate() //current date and time
@@ -34,12 +39,14 @@ class WhereWhenViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     @IBAction func yayButton() {
-        //Puts user in queue based on decided location and time
-        //Send to server
-        self.saveTimeData()
+        var delegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        
+        
+//        self.saveTimeData() No longer using timer for data
         pushToServerObject.pushDataToServer()
         
         var matchVC = MatchViewController(nibName:"MatchViewController", bundle:nil);
+        matchVC.clientType = Int(delegate.dataObject.clientType)
         self.navigationController?.pushViewController(matchVC, animated: true);
     }
     

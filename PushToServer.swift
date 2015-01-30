@@ -36,21 +36,16 @@ class PushToServer: NSObject {
     var countdownInterval: NSTimeInterval?
     var countdownHours: Int?
     var countdownMinutes: Int?
-    
+
     
     
     func pushDataToServer() {
-        NSLog("Dining Hall: %d, In hours: %d, in min: %d, in duration: %d", diningHall, countdownHours!, countdownMinutes!, countdownInterval!)
+//        NSLog("Dining Hall: %d, In hours: %d, in min: %d, in duration: %d", diningHall, countdownHours!, countdownMinutes!, countdownInterval!)
 //        self.pushToParseUsers()
         
         pushToCloud.diningHall = Int32(diningHall);
         pushToCloud.pushToParseCloudCode();
     }
-    
-    func pushToParseMatch() {
-        
-    }
-    
     
     func pushToParseUsers() {
         var query = PFQuery(className: "Users");
@@ -79,6 +74,7 @@ class PushToServer: NSObject {
             }
         }
     }
+    
     
     
     
