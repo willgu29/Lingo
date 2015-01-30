@@ -86,7 +86,7 @@ class IntroViewController: UIViewController, UITextFieldDelegate {
         userInfo.setObject(deviceToken, forKey: "deviceToken")
         userInfo.setObject(userName, forKey: "name")
         userInfo.setObject(-1, forKey: "status");
-        userInfo.setObject(currentDate, forKey: "timeDate");
+//        userInfo.setObject(currentDate, forKey: "timeDate");
         userInfo.setObject(-1, forKey: "diningHall");
         userInfo.saveInBackgroundWithBlock {
             (success: Bool!, error: NSError!) -> Void in

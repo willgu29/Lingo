@@ -30,12 +30,14 @@
                                         }
                                         else
                                         {
+                                            //CLIENT 2
                                             [self matchUser:results];
 
                                         }
                                     }
                                     else
                                     {
+                                        //CLIENT 1
                                         NSLog(@"ERROR: %@", error);
                                         [self addUserToMatchQueue];
                                     }
@@ -50,9 +52,9 @@
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
     delegate.dataObject.clientType = 2;
-    delegate.dataObject.usernameOther = object[@"usernameOther"];
-    delegate.dataObject.diningHallOtherAsStringInt = object[@"diningHallOther"];
-    delegate.dataObject.deviceTokenOther = object[@"deviceTokenOther"];
+    delegate.dataObject.usernameOther = object[@"username"];
+    delegate.dataObject.diningHallOtherAsStringInt = object[@"diningHall"];
+    delegate.dataObject.deviceTokenOther = object[@"deviceToken"];
     
 }
 

@@ -21,19 +21,18 @@ class MatchViewController: UIViewController, PullFromParseDelegate {
         if (clientType == 1)
         {
             //Setup Timer
+            pullFromParse.delegate = self;
             self.myTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self.pullFromParse, selector:"clientOneFunction", userInfo: nil, repeats: true)
             self.timeOutTimer = NSTimer.scheduledTimerWithTimeInterval(300, target: self, selector: "cancelTimer", userInfo: nil, repeats: false)
         }
         else if (clientType == 2)
         {
-            var delegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
             
             //Segue to Messaging
             var messageVC = MessageViewController(nibName: "MessageViewController", bundle: nil);
-            //Pass down proper variables
-//            messageVC.diningHallOtherIntAsString = pullFromParse.diningHallOtherIntAsString
-//            messageVC.deviceTokenOther = pullFromParse.deviceTokenOther
-//            messageVC.usernameOther = pullFromParse.usernameOther
+            self.navigationController?.pushViewController(messageVC, animated: true);
+
+  
         }
         else
         {
@@ -72,13 +71,7 @@ class MatchViewController: UIViewController, PullFromParseDelegate {
     func matchFound() {
         var messageVC = MessageViewController(nibName: "MessageViewController", bundle: nil);
         
-        
-        //Since data is stored in AppDelegate, no need to pass down!
-//        var delegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-//        //Pass down proper variables
-//        messageVC.diningHallOtherIntAsString = delegate.dataObject.diningHallOtherAsStringInt
-//        messageVC.deviceTokenOther = delegate
-//        messageVC.usernameOther = pullFromParse.usernameOther
+        self.cancelTimer();
         //other username, other dining hall, other device token. DON"T MAKE CHAT ROOM, QUERY. LET CLIENT 2 MAKE CHATROOM SINCE THEY WILL GET RESULT QUICKER.
         
         self.navigationController?.pushViewController(messageVC, animated: true);

@@ -38,6 +38,7 @@
     else if (delegate.dataObject.clientType == 2)
     {
         [_createConversationObject createDefaultConversationWith:delegate.dataObject.deviceTokenOther];
+        [self setupLabelValues];
     }
     else
     {
@@ -49,10 +50,10 @@
     
     
     // Fetches all conversations between the authenticated user and the supplied participant
-    [self fetchLayerConversation];
+//    [self fetchLayerConversation];
 }
 
-#pragma mark - Client Type 2 Methods
+#pragma mark - Client Type 1 Methods
 
 -(void)queryForConversationWith:(NSString *)deviceTokenOther
 {
