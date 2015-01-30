@@ -61,6 +61,7 @@
 //    delegate.dataObject.usernameOther = object[@"username"];
     delegate.dataObject.diningHallOtherAsStringInt = parseObject[@"diningHall"];
     delegate.dataObject.deviceTokenOther = parseObject[@"deviceToken"];
+    delegate.dataObject.conversationID = [NSString stringWithFormat:@"%@%@", [[NSUserDefaults standardUserDefaults] objectForKey:@"name"], delegate.dataObject.usernameOther];
     
 }
 

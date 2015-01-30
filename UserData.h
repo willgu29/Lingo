@@ -13,6 +13,7 @@
 @property (nonatomic, strong) NSString *deviceTokenOther;
 @property (nonatomic, strong) NSString *diningHallOtherAsStringInt;
 @property (nonatomic, strong) NSString *usernameOther;
+@property (nonatomic, strong) NSString *conversationID;
 
 @property (nonatomic) int clientType; //first or second? (0 = undecided)
 

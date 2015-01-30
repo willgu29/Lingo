@@ -16,12 +16,12 @@
 
 
 //CLIENT TWO CALL
--(void)createDefaultConversationWith:(NSString *)deviceTokenOther
+-(void)createDefaultConversationWith:(NSString *)deviceTokenOther andConvoID:(NSString *)convoID
 {
     NSString *deviceTokenString = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     NSError *error = nil;
-    _conversation = [delegate.layerClient newConversationWithParticipants:[NSSet setWithArray:@[deviceTokenString, deviceTokenOther, @"Simulator", @ "Dashboard" ]] options:nil error:&error];
+    _conversation = [delegate.layerClient newConversationWithParticipants:[NSSet setWithArray:@[deviceTokenString, @"Simulator", @ "Dashboard", convoID]] options:nil error:&error];
 }
 
 

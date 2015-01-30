@@ -13,7 +13,7 @@
 
 @property (strong, nonatomic) LYRConversation *conversation;
 -(void)sendMessage:(NSString *)textString;
--(void)createDefaultConversationWith:(NSString *)deviceTokenOther;
+-(void)createDefaultConversationWith:(NSString *)deviceTokenOther andConvoID:(NSString *)convoID;
 
 
 

@@ -33,11 +33,11 @@
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     if (delegate.dataObject.clientType == 1)
     {
-        [self queryForConversationWith:delegate.dataObject.deviceTokenOther];
+        [self queryForConversationWith:delegate.dataObject.deviceTokenOther andConvoID:delegate.dataObject.conversationID];
     }
     else if (delegate.dataObject.clientType == 2)
     {
-        [_createConversationObject createDefaultConversationWith:delegate.dataObject.deviceTokenOther];
+        [_createConversationObject createDefaultConversationWith:delegate.dataObject.deviceTokenOther andConvoID:delegate.dataObject.conversationID];
         [self setupLabelValues];
         [self setupQueryController];
     }
@@ -56,14 +56,14 @@
 
 #pragma mark - Client Type 1 Methods
 
--(void)queryForConversationWith:(NSString *)deviceTokenOther
+-(void)queryForConversationWith:(NSString *)deviceTokenOther andConvoID:(NSString *)convoID
 {
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     NSString *deviceTokenSelf = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
     LYRQuery *query = [LYRQuery queryWithClass:[LYRConversation class]];
-    query.predicate = [LYRPredicate predicateWithProperty:@"participants" operator:LYRPredicateOperatorIsEqualTo value:@[deviceTokenSelf, deviceTokenOther, @"Simulator", @"Dashboard" ]];
+    query.predicate = [LYRPredicate predicateWithProperty:@"participants" operator:LYRPredicateOperatorIsEqualTo value:@[deviceTokenOther, @"Simulator", @"Dashboard" ,convoID]];
     
-    query.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO] ];
+    query.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES] ];
     
     NSError *error;
     NSOrderedSet *conversations = [delegate.layerClient executeQuery:query error:&error];
@@ -76,7 +76,8 @@
     
     // Retrieve the last conversation
     if (conversations.count) {
-        _createConversationObject.conversation = [conversations firstObject];
+        _createConversationObject.conversation = [conversations lastObject];
+        [_createConversationObject.conversation addParticipants:[NSSet setWithArray:@[deviceTokenSelf]] error:&error];
         [self setupLabelValues];
         NSLog(@"Get last conversation object: %@",_createConversationObject.conversation.identifier);
         // setup query controller with messages from last conversation

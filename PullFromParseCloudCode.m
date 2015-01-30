@@ -38,7 +38,8 @@
         delegate.dataObject.deviceTokenOther = visitPF[@"deviceTokenOther"];
         delegate.dataObject.diningHallOtherAsStringInt = visitPF[@"diningHallOther"];
         delegate.dataObject.usernameOther = visitPF[@"usernameOther"];
-        
+        delegate.dataObject.conversationID =  [NSString stringWithFormat:@"%@%@", delegate.dataObject.usernameOther,[[NSUserDefaults standardUserDefaults] objectForKey:@"name"]];
+
         //Going to delete in deleteMatchFromParse instead
 //        [visitPF deleteInBackground];
 
