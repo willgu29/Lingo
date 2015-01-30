@@ -15,63 +15,53 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="background3" translatesAutoresizingMaskIntoConstraints="NO" id="bJh-i6-Pug">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="background3" translatesAutoresizingMaskIntoConstraints="NO" id="bJh-i6-Pug">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="we're searching for another " lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvq-fi-iUt">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="we're searching for another " lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvq-fi-iUt">
                     <rect key="frame" x="98" y="29" width="178" height="73"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="we'll keep you  posted!" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kkg-tY-Fbx">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="we'll keep you  posted!" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kkg-tY-Fbx">
                     <rect key="frame" x="142" y="185" width="134" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="134" id="XwI-I9-N9S"/>
+                        <constraint firstAttribute="height" constant="60" id="vM1-dE-dTi"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="overlayRectangle" translatesAutoresizingMaskIntoConstraints="NO" id="eUr-wk-Zna">
-                    <rect key="frame" x="72" y="499" width="174" height="22"/>
-                </imageView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYg-2H-BRl">
-                    <rect key="frame" x="82" y="495" width="157" height="30"/>
-                    <state key="normal" title="Send them a message!">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="messageButton" destination="-1" eventType="touchUpInside" id="6QO-m6-g4h"/>
-                    </connections>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="lingo-er." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yH2-ac-ngA">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lingo-er." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yH2-ac-ngA">
                     <rect key="frame" x="144" y="98" width="132" height="58"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="132" id="WhO-o2-Pve"/>
+                        <constraint firstAttribute="height" constant="58" id="xWY-mW-RSp"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="36"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Match found!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eON-8y-Vbp">
-                    <rect key="frame" x="109" y="450" width="102" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZRh-4z-O7K">
-                    <rect key="frame" x="136" y="289" width="68" height="30"/>
-                    <state key="normal" title="TESTING ">
-                        <color key="titleColor" red="0.88263862232904033" green="1" blue="0.11207175523404" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="testButton" destination="-1" eventType="touchUpInside" id="AJX-df-m0W"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="kkg-tY-Fbx" firstAttribute="top" secondItem="bvq-fi-iUt" secondAttribute="bottom" constant="83" id="89L-1U-2Dr"/>
+                <constraint firstItem="kkg-tY-Fbx" firstAttribute="top" secondItem="yH2-ac-ngA" secondAttribute="bottom" constant="29" id="8FW-zh-NlN"/>
+                <constraint firstItem="yH2-ac-ngA" firstAttribute="trailing" secondItem="bvq-fi-iUt" secondAttribute="trailing" id="DS2-cN-9Be"/>
+                <constraint firstItem="bvq-fi-iUt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="98" id="Gua-qs-Znz"/>
+                <constraint firstItem="bJh-i6-Pug" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Joi-GV-Z25"/>
+                <constraint firstItem="kkg-tY-Fbx" firstAttribute="trailing" secondItem="yH2-ac-ngA" secondAttribute="trailing" id="Xld-QL-YHJ"/>
+                <constraint firstItem="bvq-fi-iUt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="29" id="iBO-2x-nQ9"/>
+                <constraint firstItem="yH2-ac-ngA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="98" id="naH-vn-8g9"/>
+                <constraint firstItem="bJh-i6-Pug" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ndk-No-4zY"/>
+                <constraint firstAttribute="trailing" secondItem="bvq-fi-iUt" secondAttribute="trailing" constant="44" id="rLL-s4-hn8"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
     <resources>
         <image name="background3" width="320" height="568"/>
-        <image name="overlayRectangle" width="174" height="22"/>
     </resources>
 </document>

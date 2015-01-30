@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WhereWhenViewController" customModule="Lingo" customModuleProvider="target">
@@ -17,47 +18,73 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="background2" translatesAutoresizingMaskIntoConstraints="NO" id="3yb-i0-WWw">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="background2" translatesAutoresizingMaskIntoConstraints="NO" id="3yb-i0-WWw">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="let's meet in:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57X-Vs-YUu">
-                    <rect key="frame" x="42" y="63" width="145" height="28"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="let's meet in:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57X-Vs-YUu">
+                    <rect key="frame" x="42" y="37" width="166" height="28"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="166" id="b5J-CR-YMZ"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="at:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xc4-dr-vCV">
-                    <rect key="frame" x="159" y="273" width="28" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="at:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xc4-dr-vCV">
+                    <rect key="frame" x="163" y="243" width="28" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="TjX-rW-SOg"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2d-bq-uU5">
-                    <rect key="frame" x="42" y="99" width="270" height="162"/>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mqU-Xs-HWh">
+                    <rect key="frame" x="0.0" y="272" width="202" height="162"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="eXh-CM-BO9"/>
+                        <outlet property="delegate" destination="-1" id="bMk-Tv-GFl"/>
+                    </connections>
+                </pickerView>
+                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2d-bq-uU5">
+                    <rect key="frame" x="42" y="73" width="270" height="162"/>
                     <date key="date" timeIntervalSinceReferenceDate="256723200.28448403">
                         <!--2009-02-19 08:00:00 +0000-->
                     </date>
                 </datePicker>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QEI-mj-GiU">
-                    <rect key="frame" x="134" y="452" width="53" height="40"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QEI-mj-GiU">
+                    <rect key="frame" x="205" y="329" width="107" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="107" id="H5s-PQ-Sgd"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                    <state key="normal" title="YAY!">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="Let's Go!">
+                        <color key="titleColor" red="0.67972529622095057" green="0.15309550453501514" blue="0.74437415081521741" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="yayButton" destination="-1" eventType="touchUpInside" id="Buu-eP-dYQ"/>
                     </connections>
                 </button>
-                <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mqU-Xs-HWh">
-                    <rect key="frame" x="110" y="297" width="202" height="162"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="eXh-CM-BO9"/>
-                        <outlet property="delegate" destination="-1" id="bMk-Tv-GFl"/>
-                    </connections>
-                </pickerView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="QEI-mj-GiU" firstAttribute="top" secondItem="b2d-bq-uU5" secondAttribute="bottom" constant="94" id="0PF-SN-IRX"/>
+                <constraint firstItem="QEI-mj-GiU" firstAttribute="centerY" secondItem="mqU-Xs-HWh" secondAttribute="centerY" id="6fh-2J-YrH"/>
+                <constraint firstItem="QEI-mj-GiU" firstAttribute="leading" secondItem="mqU-Xs-HWh" secondAttribute="trailing" constant="3" id="CE1-1G-eOe"/>
+                <constraint firstItem="57X-Vs-YUu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="42" id="Fsc-P2-Qbj"/>
+                <constraint firstItem="b2d-bq-uU5" firstAttribute="trailing" secondItem="QEI-mj-GiU" secondAttribute="trailing" id="HaI-cO-pdm"/>
+                <constraint firstItem="3yb-i0-WWw" firstAttribute="leading" secondItem="mqU-Xs-HWh" secondAttribute="leading" id="I4F-0J-mAL"/>
+                <constraint firstItem="b2d-bq-uU5" firstAttribute="leading" secondItem="57X-Vs-YUu" secondAttribute="leading" id="J7W-PV-JRE"/>
+                <constraint firstItem="b2d-bq-uU5" firstAttribute="top" secondItem="57X-Vs-YUu" secondAttribute="bottom" constant="8" symbolic="YES" id="MuX-Bg-zwv"/>
+                <constraint firstItem="57X-Vs-YUu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="37" id="PqF-mc-uJu"/>
+                <constraint firstItem="mqU-Xs-HWh" firstAttribute="top" secondItem="xc4-dr-vCV" secondAttribute="bottom" constant="8" symbolic="YES" id="QdU-dQ-y5Y"/>
+                <constraint firstItem="xc4-dr-vCV" firstAttribute="centerX" secondItem="b2d-bq-uU5" secondAttribute="centerX" id="XDp-2g-s7g"/>
+                <constraint firstItem="3yb-i0-WWw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="cSU-oG-CrC"/>
+                <constraint firstItem="QEI-mj-GiU" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailingMargin" id="dka-q6-f9Q"/>
+                <constraint firstItem="mqU-Xs-HWh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fiH-D7-8rq"/>
+                <constraint firstItem="xc4-dr-vCV" firstAttribute="top" secondItem="b2d-bq-uU5" secondAttribute="bottom" constant="8" symbolic="YES" id="gPa-La-wZH"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="139" y="146"/>
         </view>

@@ -25,7 +25,7 @@ class WhereWhenViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     override func viewWillAppear(animated: Bool) {
         var delegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate;
-        delegate.dataObject.clientType = 0;
+//        delegate.dataObject.clientType = 0;
     }
     
     func setupValuesOfPickers() {
@@ -45,8 +45,10 @@ class WhereWhenViewController: UIViewController, UIPickerViewDelegate, UIPickerV
 //        self.saveTimeData() No longer using timer for data
         pushToServerObject.pushDataToServer()
         
+        
+        //WAIT FOR CALLBACK
         var matchVC = MatchViewController(nibName:"MatchViewController", bundle:nil);
-        matchVC.clientType = Int(delegate.dataObject.clientType)
+        self.pushToServerObject.pushToCloud.delegate = matchVC;
         self.navigationController?.pushViewController(matchVC, animated: true);
     }
     
@@ -71,7 +73,7 @@ class WhereWhenViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let dataString = dataSourcePicker.objectAtIndex(row) as String;
-        return NSAttributedString(string: dataString, attributes: [NSForegroundColorAttributeName:UIColor.whiteColor()])
+        return NSAttributedString(string: dataString, attributes: [NSForegroundColorAttributeName:UIColor.blackColor()])
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {

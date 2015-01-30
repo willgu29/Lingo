@@ -8,31 +8,40 @@
 
 import UIKit
 
-class MatchViewController: UIViewController, PullFromParseDelegate {
+class MatchViewController: UIViewController, PullFromParseDelegate, PushToParseDelegate {
 
     var pullFromParse = PullFromParseCloudCode()
     var myTimer: NSTimer?
     var timeOutTimer: NSTimer?
-    var clientType: Int? //Either one or two
+    var delegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if (clientType == 1)
+        
+        
+    }
+    
+    //Callback
+    func callbackFromCloudCodeReceived()
+    {
+        //NEED TO WAIT FOR CALLBACK
+        if (delegate.dataObject.clientType == 1)
         {
+            NSLog("Client type 1");
             //Setup Timer
             pullFromParse.delegate = self;
             self.myTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self.pullFromParse, selector:"clientOneFunction", userInfo: nil, repeats: true)
             self.timeOutTimer = NSTimer.scheduledTimerWithTimeInterval(300, target: self, selector: "cancelTimer", userInfo: nil, repeats: false)
         }
-        else if (clientType == 2)
+        else if (delegate.dataObject.clientType == 2)
         {
-            
+            NSLog("Client type 2");
             //Segue to Messaging
             var messageVC = MessageViewController(nibName: "MessageViewController", bundle: nil);
             self.navigationController?.pushViewController(messageVC, animated: true);
-
-  
+            
+            
         }
         else
         {
@@ -69,6 +78,7 @@ class MatchViewController: UIViewController, PullFromParseDelegate {
     
     //Delegate Methods (FOR CLIENTTYPE 1 USE)
     func matchFound() {
+        NSLog("Match found!");
         var messageVC = MessageViewController(nibName: "MessageViewController", bundle: nil);
         
         self.cancelTimer();
@@ -78,6 +88,6 @@ class MatchViewController: UIViewController, PullFromParseDelegate {
     }
     
     func matchNotFound() {
-        
+        NSLog("No match found.. trying again");
     }
 }

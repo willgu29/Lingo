@@ -8,8 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+@class PushToParse;
+@protocol PushToParseDelegate
+
+-(void)callbackFromCloudCodeReceived;
+
+@end
+
+
 @interface PushToParseCloudCode : NSObject
 
+@property (nonatomic, assign) id delegate;
 @property (nonatomic) int diningHall;
 -(void)pushToParseCloudCode;
 

@@ -42,6 +42,8 @@
                                         [self addUserToMatchQueue];
                                     }
                                     
+                                    //Add callback.
+                                    [_delegate callbackFromCloudCodeReceived];
                                 }];
  
 }
@@ -68,9 +70,9 @@
     matchPF[@"deviceToken"] = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
     matchPF[@"diningHall"] = [NSString stringWithFormat:@"%d",_diningHall];
     matchPF[@"status"] = [NSString stringWithFormat:@"%d", 1];
-    matchPF[@"deviceTokenOther"] = nil;
-    matchPF[@"diningHallOther"] = nil;
-    matchPF[@"usernameOther"] = nil;
+    matchPF[@"deviceTokenOther"] = [NSString stringWithFormat:@"-1"];
+    matchPF[@"diningHallOther"] = [NSString stringWithFormat:@"-1"];
+    matchPF[@"usernameOther"] = [NSString stringWithFormat:@"-1"];
     [matchPF saveInBackground];
 }
 
