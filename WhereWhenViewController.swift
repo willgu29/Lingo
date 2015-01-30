@@ -45,8 +45,6 @@ class WhereWhenViewController: UIViewController, UIPickerViewDelegate, UIPickerV
 //        self.saveTimeData() No longer using timer for data
         pushToServerObject.pushDataToServer()
         
-        
-        //WAIT FOR CALLBACK
         var matchVC = MatchViewController(nibName:"MatchViewController", bundle:nil);
         self.pushToServerObject.pushToCloud.delegate = matchVC;
         self.navigationController?.pushViewController(matchVC, animated: true);

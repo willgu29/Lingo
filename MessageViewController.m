@@ -39,6 +39,7 @@
     {
         [_createConversationObject createDefaultConversationWith:delegate.dataObject.deviceTokenOther];
         [self setupLabelValues];
+        [self setupQueryController];
     }
     else
     {
@@ -50,7 +51,7 @@
     
     
     // Fetches all conversations between the authenticated user and the supplied participant
-//    [self fetchLayerConversation];
+    [self fetchLayerConversation];
 }
 
 #pragma mark - Client Type 1 Methods
@@ -75,7 +76,7 @@
     
     // Retrieve the last conversation
     if (conversations.count) {
-        _createConversationObject.conversation = [conversations lastObject];
+        _createConversationObject.conversation = [conversations firstObject];
         [self setupLabelValues];
         NSLog(@"Get last conversation object: %@",_createConversationObject.conversation.identifier);
         // setup query controller with messages from last conversation
@@ -97,6 +98,11 @@
 
 -(IBAction)doneButton:(UIButton *)sender
 {
+    // Deletes a conversation
+    NSError *error = nil;
+    BOOL success = [_createConversationObject.conversation delete:LYRDeletionModeAllParticipants error:&error];
+    
+    
     FeedbackViewController *feedbackVC = [[FeedbackViewController alloc] initWithNibName:@"FeedbackViewController" bundle:nil];
     [self.navigationController pushViewController:feedbackVC animated:true];
     
@@ -246,7 +252,23 @@
     
     // Set cell text to "<Sender>: <Message Contents>"
     LYRMessagePart *messagePart = message.parts[0];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@:%@",[message sentByUserID], [[NSString alloc] initWithData:messagePart.data encoding:NSUTF8StringEncoding]];
+//    cell.textLabel.text = [NSString stringWithFormat:@"%@:%@",[message sentByUserID], [[NSString alloc] initWithData:messagePart.data encoding:NSUTF8StringEncoding]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@:%@",[self convertDeviceIDToName:[message sentByUserID]], [[NSString alloc] initWithData:messagePart.data encoding:NSUTF8StringEncoding]];
+
+}
+
+-(NSString *)convertDeviceIDToName:(NSString *)deviceID
+{
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    if (deviceID == [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"])
+    {
+        return [[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
+    }
+    else
+    {
+        return delegate.dataObject.usernameOther;
+    }
+
 }
 
 //- (void)fetchLayerConversation

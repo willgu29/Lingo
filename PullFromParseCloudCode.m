@@ -39,7 +39,8 @@
         delegate.dataObject.diningHallOtherAsStringInt = visitPF[@"diningHallOther"];
         delegate.dataObject.usernameOther = visitPF[@"usernameOther"];
         
-        [visitPF deleteInBackground];
+        //Going to delete in deleteMatchFromParse instead
+//        [visitPF deleteInBackground];
 
         //present message screen!
         //Someone found a match and is waiting for you!

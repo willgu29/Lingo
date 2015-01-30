@@ -16,24 +16,27 @@
 {
     NSString *deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
     NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
+    
+    NSLog(@"Before call cloud: name: %@, deviceToken: %@, diningHall: %d", username, deviceToken, _diningHall);
+    
     NSString *diningHallString = [NSString stringWithFormat:@"%d", _diningHall];
     [PFCloud callFunctionInBackground:@"hello"
                        withParameters:@{@"deviceToken": deviceToken, @"username": username, @"diningHall": diningHallString}
-                                block:^(NSArray *results, NSError *error) {
+                                block:^(id object, NSError *error) {
                                     if (!error) {
                                         // this is where you handle the results and change the UI.
                                         NSLog(@"BLOCK CALLED");
-                                        NSLog(@"RESULTS: %@", results);
-                                        if (results.count == 0)
-                                        {
-                                            NSLog(@"NO MATCHES ERROR SHOULD BE AN ERROR");
-                                        }
-                                        else
-                                        {
+                                        NSLog(@"RESULTS: %@", object);
+//                                        if (results.count == 0)
+//                                        {
+//                                            NSLog(@"NO MATCHES ERROR SHOULD BE AN ERROR");
+//                                        }
+//                                        else
+//                                        {
                                             //CLIENT 2
-                                            [self matchUser:results];
+                                            [self matchUser:object];
 
-                                        }
+//                                        }
                                     }
                                     else
                                     {
@@ -48,15 +51,16 @@
  
 }
 
--(void)matchUser:(NSArray *)array
+-(void)matchUser:(id)parseObject
 {
-    id object = [array lastObject];
+//    id object = [array lastObject];
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
     delegate.dataObject.clientType = 2;
-    delegate.dataObject.usernameOther = object[@"username"];
-    delegate.dataObject.diningHallOtherAsStringInt = object[@"diningHall"];
-    delegate.dataObject.deviceTokenOther = object[@"deviceToken"];
+    delegate.dataObject.usernameOther = parseObject[@"username"];
+//    delegate.dataObject.usernameOther = object[@"username"];
+    delegate.dataObject.diningHallOtherAsStringInt = parseObject[@"diningHall"];
+    delegate.dataObject.deviceTokenOther = parseObject[@"deviceToken"];
     
 }
 

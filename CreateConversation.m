@@ -13,22 +13,15 @@
 @implementation CreateConversation
 
 
--(void)createConversationWith:(NSString *)deviceToken
-{
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    NSString *selfDeviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
-    NSError *error = nil;
-//    _conversation = [delegate.layerClient newConversationWithParticipants:[NSSet setWithArray:@[deviceToken, selfDeviceToken]] options:nil error:&error];
-     _conversation = [delegate.layerClient newConversationWithParticipants:[NSSet setWithArray:@[@"TestUser", @"ea3c453f042fb94bd6fe88bb751a401a0d1c25385ccb7e1026e6edaf17729054"]] options:nil error:&error];
-    
-}
+
 
 //CLIENT TWO CALL
 -(void)createDefaultConversationWith:(NSString *)deviceTokenOther
 {
+    NSString *deviceTokenString = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     NSError *error = nil;
-    _conversation = [delegate.layerClient newConversationWithParticipants:[NSSet setWithArray:@[deviceTokenOther, @"Simulator", @ "Dashboard" ]] options:nil error:&error];
+    _conversation = [delegate.layerClient newConversationWithParticipants:[NSSet setWithArray:@[deviceTokenString, deviceTokenOther, @"Simulator", @ "Dashboard" ]] options:nil error:&error];
 }
 
 

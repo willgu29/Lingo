@@ -15,10 +15,6 @@
 
 //@property (nonatomic) LYRClient *layerClient;
 @property (nonatomic, retain) LYRQueryController *queryController;
-//
-//@property (nonatomic, strong) NSString *diningHallOtherIntAsString;
-//@property (nonatomic, strong) NSString *usernameOther;
-//@property (nonatomic, strong) NSString *deviceTokenOther;
-//@property (nonatomic) int clientType;
+
 
 @end
