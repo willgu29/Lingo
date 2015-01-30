@@ -12,6 +12,13 @@ class PullFromServer: NSObject {
    
     func fetchFromServerCloseTimes()
     {
-        
+//        var query = PFQuery(className: "Users");
+//        
+//        var deviceToken = NSUserDefaults.standardUserDefaults().objectForKey("deviceToken");
+//        NSString *hexString = [data hexadecimalString];
+//        [query whereKey:@"deviceToken" equalTo:hexString];
+//        PFObject *visitPF = [query getFirstObject];
+//        visitPF[@"fratName"] = [NSString stringWithFormat:@"%d",status];
+//        [visitPF saveInBackground];
     }
 }

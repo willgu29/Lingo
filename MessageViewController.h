@@ -13,8 +13,7 @@
 
 //These properties are used within the example.
 
-@property (nonatomic) LYRClient *layerClient;
-@property (nonatomic) LYRConversation *conversation;
+//@property (nonatomic) LYRClient *layerClient;
 @property (nonatomic, retain) LYRQueryController *queryController;
 
 @end

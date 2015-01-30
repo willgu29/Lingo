@@ -20,6 +20,12 @@ class MatchViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func testButton() {
+
+        var pushParse = PushToParseCloudCode();
+        pushParse.pushToParseCloudCode();
+    }
+    
     @IBAction func messageButton() {
         //Layer SDK or Parse SDK or Personal Implementation?
         var messageVC = MessageViewController(nibName:"MessageViewController", bundle:nil);
