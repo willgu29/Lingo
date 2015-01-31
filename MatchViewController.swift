@@ -69,12 +69,7 @@ class MatchViewController: UIViewController, PullFromParseDelegate, PushToParseD
 //        pushParse.pushToParseCloudCode();
 //    }
     
-    @IBAction func messageButton() {
-        //Layer SDK or Parse SDK or Personal Implementation?
-        var messageVC = MessageViewController(nibName:"MessageViewController", bundle:nil);
-//        var messagingVC = MessagingViewController(nibName:"MessagingViewController", bundle:nil);
-        self.navigationController?.pushViewController(messageVC, animated: true);
-    }
+
     
     //Delegate Methods (FOR CLIENTTYPE 1 USE)
     func matchFound() {

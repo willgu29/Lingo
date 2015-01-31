@@ -51,7 +51,7 @@
     
     
     // Fetches all conversations between the authenticated user and the supplied participant
-    [self fetchLayerConversation];
+//    [self fetchLayerConversation];
 }
 
 #pragma mark - Client Type 1 Methods
@@ -61,7 +61,7 @@
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     NSString *deviceTokenSelf = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
     LYRQuery *query = [LYRQuery queryWithClass:[LYRConversation class]];
-    query.predicate = [LYRPredicate predicateWithProperty:@"participants" operator:LYRPredicateOperatorIsEqualTo value:@[deviceTokenOther, @"Simulator", @"Dashboard" ,convoID]];
+    query.predicate = [LYRPredicate predicateWithProperty:@"participants" operator:LYRPredicateOperatorIsEqualTo value:@[deviceTokenSelf,deviceTokenOther, @"Simulator", @"Dashboard" ,convoID]];
     
     query.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES] ];
     
@@ -77,12 +77,22 @@
     // Retrieve the last conversation
     if (conversations.count) {
         _createConversationObject.conversation = [conversations lastObject];
-        [_createConversationObject.conversation addParticipants:[NSSet setWithArray:@[deviceTokenSelf]] error:&error];
         [self setupLabelValues];
         NSLog(@"Get last conversation object: %@",_createConversationObject.conversation.identifier);
         // setup query controller with messages from last conversation
         [self setupQueryController];
     }
+    else
+    {
+        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(retryMessageConvo) userInfo:nil repeats:NO];
+    }
+}
+                          
+-(void)retryMessageConvo
+{
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    [self queryForConversationWith:delegate.dataObject.deviceTokenOther andConvoID:delegate.dataObject.conversationID];
+
 }
 
 -(void)setupLabelValues
@@ -254,14 +264,15 @@
     // Set cell text to "<Sender>: <Message Contents>"
     LYRMessagePart *messagePart = message.parts[0];
 //    cell.textLabel.text = [NSString stringWithFormat:@"%@:%@",[message sentByUserID], [[NSString alloc] initWithData:messagePart.data encoding:NSUTF8StringEncoding]];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@:%@",[self convertDeviceIDToName:[message sentByUserID]], [[NSString alloc] initWithData:messagePart.data encoding:NSUTF8StringEncoding]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@: %@",[self convertDeviceIDToName:[message sentByUserID]], [[NSString alloc] initWithData:messagePart.data encoding:NSUTF8StringEncoding]];
 
 }
 
 -(NSString *)convertDeviceIDToName:(NSString *)deviceID
 {
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    if (deviceID == [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"])
+    NSString *deviceString = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
+    if ([deviceID isEqualToString:deviceString])
     {
         return [[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
     }

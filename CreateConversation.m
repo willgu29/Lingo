@@ -21,24 +21,29 @@
     NSString *deviceTokenString = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     NSError *error = nil;
-    _conversation = [delegate.layerClient newConversationWithParticipants:[NSSet setWithArray:@[deviceTokenString, @"Simulator", @ "Dashboard", convoID]] options:nil error:&error];
-}
-
-
-
--(void)layerDefaultConversation
-{
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-
-    if (!self.conversation) {
-        NSError *error = nil;
-        _conversation = [delegate.layerClient newConversationWithParticipants:[NSSet setWithArray:@[ @"Simulator", @ "Dashboard" ]] options:nil error:&error];
-        if (!self.conversation) {
-            NSLog(@"New Conversation creation failed: %@", error);
-        }
+    _conversation = [delegate.layerClient newConversationWithParticipants:[NSSet setWithArray:@[deviceTokenString, deviceTokenOther, @"Simulator", @ "Dashboard", convoID]] options:nil error:&error];
+    
+    
+//    send a "dummy" message with the MIME type "text/invite". This would be an empty message that you never display to the users
+//    [LYRMessagePart messagePartWithMIMEType:@"text/invite" data:<#(NSData *)#>]
+    // Creates a message part with text/plain MIME Type
+    LYRMessagePart *messagePart = [LYRMessagePart messagePartWithText:@"Welcome to Lingo!"];
+    
+    // Creates and returns a new message object with the given conversation and array of message parts
+    LYRMessage *message = [delegate.layerClient newMessageWithParts:@[messagePart] options:@{LYRMessageOptionsPushNotificationAlertKey: @"TEST"} error:nil];
+    
+    // Sends the specified message
+    BOOL success = [self.conversation sendMessage:message error:&error];
+    if (success) {
+        NSLog(@"Message queued to be sent: TEST");
+    } else {
+        NSLog(@"Message send failed: %@", error);
     }
-
 }
+
+
+
+
 
 -(void)testMessage{
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;

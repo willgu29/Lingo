@@ -45,9 +45,28 @@ class WhereWhenViewController: UIViewController, UIPickerViewDelegate, UIPickerV
 //        self.saveTimeData() No longer using timer for data
         pushToServerObject.pushDataToServer()
         
+        //if eating right now
+        pushNotificationToAdmins()
+        //else
+        //just schedule it and do notifcations later
+        
+        
         var matchVC = MatchViewController(nibName:"MatchViewController", bundle:nil);
         self.pushToServerObject.pushToCloud.delegate = matchVC;
         self.navigationController?.pushViewController(matchVC, animated: true);
+    }
+    
+    func pushNotificationToAdmins() {
+        var username = NSUserDefaults.standardUserDefaults().objectForKey("name") as NSString
+        var pushQuery = PFInstallation.query();
+        pushQuery.whereKey("isAdmin", equalTo: true);
+        var push = PFPush();
+        push.setQuery(pushQuery)
+        var stringMessage = NSString(format: "%@ wants to eat right now!", username);
+        push.setMessage(stringMessage);
+        push.sendPushInBackgroundWithBlock { (var success: Bool!, var error: NSError!) -> Void in
+            //blah
+        }
     }
     
     func saveTimeData() {

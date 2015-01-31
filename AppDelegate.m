@@ -126,6 +126,11 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     [self activiateLayer];
 }
 
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    //fetch proper completion handle for notification.
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -135,6 +140,12 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    //If user is in matching mode, send push notification on match found
+    
+    //else if user is in messaging, send them message notifications
+    
+    //
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -147,6 +158,18 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [self deleteMatchFromParse];
+    
+}
+
+-(void)deleteMatchFromParse
+{
+    NSString *stringDeviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
+    PFQuery *query = [PFQuery queryWithClassName:@"Match"];
+    [query whereKey:@"deviceToken" equalTo:stringDeviceToken];
+    PFObject *matchObject = [query getFirstObject];
+    [matchObject deleteInBackground];
+    
 }
 
 #pragma mark -LAYER KIT
