@@ -54,6 +54,31 @@
 //    [self fetchLayerConversation];
 }
 
+-(void)moveVC
+{
+    [self.view setFrame:CGRectMake(0, -166, self.view.frame.size.width, self.view.frame.size.height)];
+}
+
+-(void)revertVC
+{
+    [self.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    
+}
+
+
+#pragma mark - UITextfield Delegate
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self moveVC];
+    textField.text = @"";
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [self revertVC];
+}
+
+
 #pragma mark - Client Type 1 Methods
 
 -(void)queryForConversationWith:(NSString *)deviceTokenOther andConvoID:(NSString *)convoID
@@ -110,8 +135,11 @@
 -(IBAction)doneButton:(UIButton *)sender
 {
     // Deletes a conversation
-    NSError *error = nil;
-    BOOL success = [_createConversationObject.conversation delete:LYRDeletionModeAllParticipants error:&error];
+    
+    
+    [_createConversationObject sendMessage:@"has left the conversation"];
+    
+    [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(deleteConvo) userInfo:nil repeats:NO];
     
     
     FeedbackViewController *feedbackVC = [[FeedbackViewController alloc] initWithNibName:@"FeedbackViewController" bundle:nil];
@@ -119,9 +147,23 @@
     
 }
 
+-(void)deleteConvo
+{
+    NSError *error = nil;
+    BOOL success = [_createConversationObject.conversation delete:LYRDeletionModeAllParticipants error:&error];
+
+}
+
 -(IBAction)sendButton:(UIButton *)sender
 {
+    if ([_textField.text isEqualToString:@""])
+    {
+        //Empty message
+        return;
+    }
     [_createConversationObject sendMessage:_textField.text];
+    _textField.text = @"";
+
 //    [_createConversationObject testMessage];
 }
 
@@ -264,7 +306,21 @@
     // Set cell text to "<Sender>: <Message Contents>"
     LYRMessagePart *messagePart = message.parts[0];
 //    cell.textLabel.text = [NSString stringWithFormat:@"%@:%@",[message sentByUserID], [[NSString alloc] initWithData:messagePart.data encoding:NSUTF8StringEncoding]];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@: %@",[self convertDeviceIDToName:[message sentByUserID]], [[NSString alloc] initWithData:messagePart.data encoding:NSUTF8StringEncoding]];
+    
+    NSString *messageString = [[NSString alloc] initWithData:messagePart.data encoding:NSUTF8StringEncoding];
+
+    if ([messageString isEqualToString:@"Welcome to Lingo!"])
+    {
+        cell.textLabel.text = [NSString stringWithFormat:@"Lingo@UCLA: %@", messageString];
+        return;
+    }
+    else
+    {
+        cell.textLabel.text = [NSString stringWithFormat:@"%@: %@",[self convertDeviceIDToName:[message sentByUserID]], messageString];
+    }
+    
+//    cell.textLabel.text = [NSString stringWithFormat:@"%@: %@",[self convertDeviceIDToName:[message sentByUserID]], [[NSString alloc] initWithData:messagePart.data encoding:NSUTF8StringEncoding]];
+
 
 }
 

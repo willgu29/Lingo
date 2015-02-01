@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IntroViewController" customModule="Lingo">
             <connections>
+                <outlet property="lingoButton" destination="dXG-3A-7o4" id="Brs-YG-Cwp"/>
                 <outlet property="textField" destination="P7l-Uw-T0A" id="hyz-wx-9vA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -16,23 +17,22 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="background1" translatesAutoresizingMaskIntoConstraints="NO" id="B3R-um-GHu">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="background1" translatesAutoresizingMaskIntoConstraints="NO" id="B3R-um-GHu">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome to Lingo!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X65-c4-tpe">
-                    <rect key="frame" x="89" y="52" width="143" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Explain purpose of app" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l5l-GM-PIO">
-                    <rect key="frame" x="71" y="96" width="178" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXG-3A-7o4">
-                    <rect key="frame" x="120" y="419" width="80" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="What your friends call you...." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P7l-Uw-T0A">
+                    <rect key="frame" x="60" y="173" width="200" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="FE0-5n-L6M"/>
+                    </connections>
+                </textField>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="lingoText" translatesAutoresizingMaskIntoConstraints="NO" id="wL8-IO-KJt">
+                    <rect key="frame" x="155" y="54" width="151" height="71"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXG-3A-7o4">
+                    <rect key="frame" x="120" y="269" width="80" height="30"/>
                     <state key="normal" title="Let's Lingo!">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -41,39 +41,24 @@
                         <action selector="goButton" destination="-1" eventType="touchUpInside" id="h50-Ar-JYJ"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="What your friends call you...." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P7l-Uw-T0A">
-                    <rect key="frame" x="62" y="271" width="200" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <textInputTraits key="textInputTraits"/>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="FE0-5n-L6M"/>
-                    </connections>
-                </textField>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mSQ-7d-SBj">
-                    <rect key="frame" x="116" y="369" width="88" height="32"/>
-                    <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" image="cameraIcon">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="takeASelf" destination="-1" eventType="touchUpInside" id="xGV-zH-TJK"/>
-                    </connections>
-                </button>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="overlaySquare" translatesAutoresizingMaskIntoConstraints="NO" id="BJx-20-L8c">
-                    <rect key="frame" x="129" y="359" width="63" height="52"/>
-                </imageView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="lingoText" translatesAutoresizingMaskIntoConstraints="NO" id="wL8-IO-KJt">
-                    <rect key="frame" x="155" y="174" width="151" height="71"/>
-                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="B3R-um-GHu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1DE-sJ-CWg"/>
+                <constraint firstItem="B3R-um-GHu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="E7S-WZ-AHH"/>
+                <constraint firstItem="P7l-Uw-T0A" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="60" id="Ebg-Qu-8Wz"/>
+                <constraint firstItem="dXG-3A-7o4" firstAttribute="centerX" secondItem="B3R-um-GHu" secondAttribute="centerX" id="Nda-JZ-6TQ"/>
+                <constraint firstItem="P7l-Uw-T0A" firstAttribute="top" secondItem="wL8-IO-KJt" secondAttribute="bottom" constant="48" id="QbS-H6-ftp"/>
+                <constraint firstItem="dXG-3A-7o4" firstAttribute="centerX" secondItem="P7l-Uw-T0A" secondAttribute="centerX" id="TyH-a8-spB"/>
+                <constraint firstItem="dXG-3A-7o4" firstAttribute="top" secondItem="P7l-Uw-T0A" secondAttribute="bottom" constant="66" id="bUW-v2-Ugf"/>
+                <constraint firstItem="B3R-um-GHu" firstAttribute="centerY" secondItem="dXG-3A-7o4" secondAttribute="centerY" id="eT0-xD-nSa"/>
+                <constraint firstAttribute="trailing" secondItem="wL8-IO-KJt" secondAttribute="trailing" constant="14" id="lny-ZX-x4m"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
     <resources>
         <image name="background1" width="320" height="568"/>
-        <image name="cameraIcon" width="40" height="32"/>
         <image name="lingoText" width="151" height="71"/>
-        <image name="overlaySquare" width="63" height="52"/>
     </resources>
 </document>

@@ -22,12 +22,26 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="let's meet at:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57X-Vs-YUu">
                     <rect key="frame" x="42" y="68" width="166" height="28"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="166" id="Bn4-e1-M3g"/>
+                        <constraint firstAttribute="width" constant="166" id="nAl-Qg-tQo"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QEI-mj-GiU">
+                    <rect key="frame" x="75" y="406" width="169" height="38"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="38" id="D1W-0v-S0C"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <state key="normal" title="Let's Go!" backgroundImage="overlay">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="yayButton" destination="-1" eventType="touchUpInside" id="Buu-eP-dYQ"/>
+                    </connections>
+                </button>
                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mqU-Xs-HWh">
                     <rect key="frame" x="59" y="104" width="202" height="162"/>
                     <connections>
@@ -35,34 +49,20 @@
                         <outlet property="delegate" destination="-1" id="bMk-Tv-GFl"/>
                     </connections>
                 </pickerView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QEI-mj-GiU">
-                    <rect key="frame" x="107" y="361" width="107" height="48"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="107" id="4uy-6N-Ejr"/>
-                        <constraint firstAttribute="height" constant="48" id="RMf-W4-hM7"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                    <state key="normal" title="Let's Go!">
-                        <color key="titleColor" red="0.67972529622095057" green="0.15309550453501514" blue="0.74437415081521741" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="yayButton" destination="-1" eventType="touchUpInside" id="Buu-eP-dYQ"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="3yb-i0-WWw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="8hp-yr-Vqt"/>
-                <constraint firstItem="mqU-Xs-HWh" firstAttribute="centerX" secondItem="3yb-i0-WWw" secondAttribute="centerX" id="Gsx-Db-POA"/>
-                <constraint firstItem="57X-Vs-YUu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="68" id="Sd3-8W-7sR"/>
-                <constraint firstItem="mqU-Xs-HWh" firstAttribute="top" secondItem="57X-Vs-YUu" secondAttribute="bottom" constant="8" symbolic="YES" id="aJ6-dE-wmI"/>
-                <constraint firstItem="57X-Vs-YUu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="42" id="bS9-oA-SIU"/>
-                <constraint firstItem="QEI-mj-GiU" firstAttribute="top" secondItem="mqU-Xs-HWh" secondAttribute="bottom" constant="95" id="hFl-cM-rTE"/>
-                <constraint firstItem="3yb-i0-WWw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hLa-5a-JXG"/>
-                <constraint firstItem="mqU-Xs-HWh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="59" id="jrn-zi-3nc"/>
-                <constraint firstAttribute="trailing" secondItem="3yb-i0-WWw" secondAttribute="trailing" id="yLG-ta-WvH"/>
-                <constraint firstItem="QEI-mj-GiU" firstAttribute="centerX" secondItem="mqU-Xs-HWh" secondAttribute="centerX" id="zvQ-NA-6yT"/>
+                <constraint firstItem="3yb-i0-WWw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7VI-0H-VcH"/>
+                <constraint firstItem="mqU-Xs-HWh" firstAttribute="top" secondItem="57X-Vs-YUu" secondAttribute="bottom" constant="8" symbolic="YES" id="EcJ-Rt-dB6"/>
+                <constraint firstItem="57X-Vs-YUu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="42" id="FHF-TN-Ez7"/>
+                <constraint firstAttribute="trailing" secondItem="3yb-i0-WWw" secondAttribute="trailing" id="G22-Ec-zpg"/>
+                <constraint firstItem="mqU-Xs-HWh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="59" id="Nyj-gV-hcK"/>
+                <constraint firstItem="57X-Vs-YUu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="68" id="Ysl-sq-yq5"/>
+                <constraint firstAttribute="trailing" secondItem="QEI-mj-GiU" secondAttribute="trailing" constant="76" id="bbp-dT-Wa4"/>
+                <constraint firstItem="3yb-i0-WWw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="lXi-rz-IRo"/>
+                <constraint firstAttribute="bottom" secondItem="QEI-mj-GiU" secondAttribute="bottom" constant="124" id="mwR-IM-DLD"/>
+                <constraint firstItem="mqU-Xs-HWh" firstAttribute="centerX" secondItem="3yb-i0-WWw" secondAttribute="centerX" id="nXR-SI-NJD"/>
+                <constraint firstItem="QEI-mj-GiU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="75" id="udm-lf-btg"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="139" y="146"/>
@@ -70,5 +70,6 @@
     </objects>
     <resources>
         <image name="background2" width="320" height="568"/>
+        <image name="overlay" width="164" height="44"/>
     </resources>
 </document>

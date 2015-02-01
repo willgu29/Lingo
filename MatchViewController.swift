@@ -14,12 +14,24 @@ class MatchViewController: UIViewController, PullFromParseDelegate, PushToParseD
     var myTimer: NSTimer?
     var timeOutTimer: NSTimer?
     var delegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    @IBOutlet var spinner: UIActivityIndicatorView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        spinner?.startAnimating();
+        spinner?.hidden = false;
+    }
+
+    @IBAction func cancelButton()
+    {
+        self.cancelTimer();
+        self.navigationController?.popViewControllerAnimated(true);
     }
     
     //Callback
@@ -31,7 +43,7 @@ class MatchViewController: UIViewController, PullFromParseDelegate, PushToParseD
             NSLog("Client type 1");
             //Setup Timer
             pullFromParse.delegate = self;
-            self.myTimer = NSTimer.scheduledTimerWithTimeInterval(7, target: self.pullFromParse, selector:"clientOneFunction", userInfo: nil, repeats: true)
+            self.myTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self.pullFromParse, selector:"clientOneFunction", userInfo: nil, repeats: true)
             self.timeOutTimer = NSTimer.scheduledTimerWithTimeInterval(300, target: self, selector: "cancelTimer", userInfo: nil, repeats: false)
         }
         else if (delegate.dataObject.clientType == 2)
@@ -50,6 +62,7 @@ class MatchViewController: UIViewController, PullFromParseDelegate, PushToParseD
     }
     
     func cancelTimer() {
+        spinner?.stopAnimating();
         NSLog("Cancel timers");
         self.myTimer?.invalidate();
         self.timeOutTimer?.invalidate();

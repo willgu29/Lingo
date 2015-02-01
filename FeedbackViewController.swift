@@ -9,7 +9,9 @@
 import UIKit
 
 class FeedbackViewController: UIViewController {
-
+    
+    var reportBug = ReportBug();
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,6 +25,7 @@ class FeedbackViewController: UIViewController {
     
     @IBAction func feedbackButton() {
         //Present mail option
+        reportBug.reportBugWithVC(self);
     }
     
     @IBAction func roundTwoButton() {

@@ -63,7 +63,14 @@ class WhereWhenViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         var push = PFPush();
         push.setQuery(pushQuery)
         var stringMessage = NSString(format: "%@ wants to eat right now!", username);
-        push.setMessage(stringMessage);
+        
+        var dataObject = ["alert" : stringMessage,
+            "sound" : "default"
+        ];
+        
+        push.setData(dataObject);
+//        push.setMessage(stringMessage);
+        
         push.sendPushInBackgroundWithBlock { (var success: Bool!, var error: NSError!) -> Void in
             //blah
         }
@@ -90,7 +97,7 @@ class WhereWhenViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let dataString = dataSourcePicker.objectAtIndex(row) as String;
-        return NSAttributedString(string: dataString, attributes: [NSForegroundColorAttributeName:UIColor.blackColor()])
+        return NSAttributedString(string: dataString, attributes: [NSForegroundColorAttributeName:UIColor.whiteColor()])
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {

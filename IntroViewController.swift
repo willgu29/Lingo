@@ -12,11 +12,13 @@ class IntroViewController: UIViewController, UITextFieldDelegate {
 
     
     @IBOutlet var textField: UITextField!
+    @IBOutlet var lingoButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        lingoButton.hidden = true;
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,7 +62,10 @@ class IntroViewController: UIViewController, UITextFieldDelegate {
     
     
     func textFieldDidEndEditing(textField: UITextField) {
-        //Save name
+        if (!textField.text.isEmpty)
+        {
+            lingoButton.hidden = false;
+        }
         
     }
     
