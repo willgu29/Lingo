@@ -86,7 +86,7 @@ class IntroViewController: UIViewController, UITextFieldDelegate {
         var currentDate = NSDate().descriptionWithLocale(currentLocale)
         
         var userInfo = PFObject(className: "Users")
-        var deviceToken: NSString! = NSUserDefaults.standardUserDefaults().objectForKey("deviceToken") as NSString;
+        var deviceToken: NSString = NSUserDefaults.standardUserDefaults().objectForKey("deviceToken") as NSString;
         var userName: NSString = NSUserDefaults.standardUserDefaults().objectForKey("name") as NSString;
         userInfo.setObject(deviceToken, forKey: "deviceToken")
         userInfo.setObject(userName, forKey: "name")
