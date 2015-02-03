@@ -30,47 +30,38 @@
     LYRMessagePart *messagePart = [LYRMessagePart messagePartWithText:@"Welcome to Lingo!"];
     
     // Creates and returns a new message object with the given conversation and array of message parts
-    LYRMessage *message = [delegate.layerClient newMessageWithParts:@[messagePart] options:@{LYRMessageOptionsPushNotificationAlertKey: @"TEST"} error:nil];
+    LYRMessage *message = [delegate.layerClient newMessageWithParts:@[messagePart] options:@{LYRMessageOptionsPushNotificationAlertKey: @"LingoUCLA"} error:nil];
     
     // Sends the specified message
     BOOL success = [self.conversation sendMessage:message error:&error];
     if (success) {
-        NSLog(@"Message queued to be sent: TEST");
+        NSLog(@"Message queued to be sent: %@", message);
+    } else {
+        NSLog(@"Message send failed: %@", error);
+    }
+    
+    [self sendIceBreaker];
+   
+}
+
+-(void)sendIceBreaker
+{
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    LYRMessagePart *messagePart = [LYRMessagePart messagePartWithText:@"Say hi!"];
+    
+    // Creates and returns a new message object with the given conversation and array of message parts
+    LYRMessage *message = [delegate.layerClient newMessageWithParts:@[messagePart] options:@{LYRMessageOptionsPushNotificationAlertKey: @"LingoUCLA"} error:nil];
+    
+    NSError *error;
+    // Sends the specified message
+    BOOL success = [self.conversation sendMessage:message error:&error];
+    if (success) {
+        NSLog(@"Message queued to be sent: %@", message);
     } else {
         NSLog(@"Message send failed: %@", error);
     }
 }
 
-
-
-
-
--(void)testMessage{
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-        // If no conversations exist, create a new conversation object with two participants
-        if (!self.conversation) {
-            NSError *error = nil;
-            self.conversation = [delegate.layerClient newConversationWithParticipants:[NSSet setWithArray:@[ @"Simulator", @ "Dashboard" ]] options:nil error:&error];
-            if (!self.conversation) {
-                NSLog(@"New Conversation creation failed: %@", error);
-            }
-        }
-        
-        // Creates a message part with text/plain MIME Type
-        LYRMessagePart *messagePart = [LYRMessagePart messagePartWithText:@"TEST"];
-        
-        // Creates and returns a new message object with the given conversation and array of message parts
-        LYRMessage *message = [delegate.layerClient newMessageWithParts:@[messagePart] options:@{LYRMessageOptionsPushNotificationAlertKey: @"TEST"} error:nil];
-        
-        // Sends the specified message
-        NSError *error;
-        BOOL success = [self.conversation sendMessage:message error:&error];
-        if (success) {
-            NSLog(@"Message queued to be sent: TEST");
-        } else {
-            NSLog(@"Message send failed: %@", error);
-        }
-}
 
 -(void)sendMessage:(NSString *)textString
 {
@@ -80,7 +71,7 @@
     
     // Creates and returns a new message object with the given conversation and array of message parts
     LYRMessage *message = [delegate.layerClient newMessageWithParts:@[messagePart] options:@{LYRMessageOptionsPushNotificationAlertKey: textString} error:nil];
-    
+
     // Sends the specified message
     NSError *error;
     BOOL success = [self.conversation sendMessage:message error:&error];

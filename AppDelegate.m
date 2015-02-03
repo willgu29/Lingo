@@ -18,25 +18,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    
-    
     //PARSE KIT
-//    
     [Parse enableLocalDatastore];
-    
-    // Initialize Parse.
     [Parse setApplicationId:@"JxRcxaBlRovUP8BpmdUCRDvifa6IM9kHh9y5kVG2"
                   clientKey:@"C4DQQQotZzVIKaPM1SxuQUMTtYG3CBrGRBag4ZRM"];
-    
     // [Optional] Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    
-    
     //**************
     
-    
     //PUSH NOTIFICATIONS
-    
     if ([application respondsToSelector:@selector(registerForRemoteNotifications)]) {
         // Register device for iOS8
         UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
@@ -51,37 +41,27 @@
         // Register device for iOS7
         [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge];
     }
-    
-    
     //***************
     
     
-    
+    //"Login Authentication" -> currently if a username is stored go to main, else create username
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch
-
     NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
     if (username)
     {
-        //Present main VC
         WhereWhenViewController *whereVC = [[WhereWhenViewController alloc] initWithNibName:@"WhereWhenViewController" bundle:nil];
         UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:whereVC];
         self.window.rootViewController = navVC;
     }
     else
     {
-        //New user
         IntroViewController *introVC = [[IntroViewController alloc] initWithNibName:@"IntroViewController" bundle:nil];
-        
         self.window.rootViewController = introVC;
     }
     
     _dataObject = [[UserData alloc] init];
-    
-    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
     
     return YES;
     
@@ -96,8 +76,6 @@
 -(void)activiateLayer
 {
     //LAYER KIT
-    
-    
     NSUUID *appID = [[NSUUID alloc] initWithUUIDString:@"806c1028-a013-11e4-a3db-285a000000f4"];
     self.layerClient = [LYRClient clientWithAppID:appID];
     [self.layerClient connectWithCompletion:^(BOOL success, NSError *error) {

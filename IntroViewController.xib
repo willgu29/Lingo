@@ -32,7 +32,11 @@
                     <rect key="frame" x="155" y="54" width="151" height="71"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXG-3A-7o4">
-                    <rect key="frame" x="120" y="269" width="80" height="30"/>
+                    <rect key="frame" x="92" y="251" width="136" height="66"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="66" id="exU-6n-olO"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                     <state key="normal" title="Let's Lingo!">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -44,15 +48,16 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="B3R-um-GHu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1DE-sJ-CWg"/>
-                <constraint firstItem="B3R-um-GHu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="E7S-WZ-AHH"/>
-                <constraint firstItem="P7l-Uw-T0A" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="60" id="Ebg-Qu-8Wz"/>
-                <constraint firstItem="dXG-3A-7o4" firstAttribute="centerX" secondItem="B3R-um-GHu" secondAttribute="centerX" id="Nda-JZ-6TQ"/>
-                <constraint firstItem="P7l-Uw-T0A" firstAttribute="top" secondItem="wL8-IO-KJt" secondAttribute="bottom" constant="48" id="QbS-H6-ftp"/>
-                <constraint firstItem="dXG-3A-7o4" firstAttribute="centerX" secondItem="P7l-Uw-T0A" secondAttribute="centerX" id="TyH-a8-spB"/>
-                <constraint firstItem="dXG-3A-7o4" firstAttribute="top" secondItem="P7l-Uw-T0A" secondAttribute="bottom" constant="66" id="bUW-v2-Ugf"/>
-                <constraint firstItem="B3R-um-GHu" firstAttribute="centerY" secondItem="dXG-3A-7o4" secondAttribute="centerY" id="eT0-xD-nSa"/>
-                <constraint firstAttribute="trailing" secondItem="wL8-IO-KJt" secondAttribute="trailing" constant="14" id="lny-ZX-x4m"/>
+                <constraint firstItem="B3R-um-GHu" firstAttribute="centerY" secondItem="dXG-3A-7o4" secondAttribute="centerY" id="11t-5q-CWL"/>
+                <constraint firstAttribute="trailing" secondItem="wL8-IO-KJt" secondAttribute="trailing" constant="14" id="HZB-NR-zdX"/>
+                <constraint firstItem="P7l-Uw-T0A" firstAttribute="top" secondItem="wL8-IO-KJt" secondAttribute="bottom" constant="48" id="HcB-Hr-Mzb"/>
+                <constraint firstItem="dXG-3A-7o4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="92" id="SW6-xC-bIk"/>
+                <constraint firstItem="B3R-um-GHu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Wb3-du-5b4"/>
+                <constraint firstItem="dXG-3A-7o4" firstAttribute="top" secondItem="P7l-Uw-T0A" secondAttribute="bottom" constant="48" id="aHs-Gs-MOZ"/>
+                <constraint firstItem="P7l-Uw-T0A" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="60" id="cYV-tb-w0p"/>
+                <constraint firstItem="dXG-3A-7o4" firstAttribute="centerX" secondItem="B3R-um-GHu" secondAttribute="centerX" id="fyZ-jd-XL8"/>
+                <constraint firstItem="B3R-um-GHu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xTM-OH-q1z"/>
+                <constraint firstItem="dXG-3A-7o4" firstAttribute="centerX" secondItem="P7l-Uw-T0A" secondAttribute="centerX" id="xfQ-Y5-G48"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

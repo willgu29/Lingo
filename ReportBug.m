@@ -39,7 +39,7 @@
     else
     {
         UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                            message:@"Mail is not configured on this account. Please email lingoucla@gmail.com to report a bug"
+                                                            message:@"Mail is not configured on this account. Please email lingoucla@gmail.com. Your feedback is highly valued."
                                                            delegate:nil
                                                   cancelButtonTitle:@"Ok"
                                                   otherButtonTitles:nil];

@@ -16,8 +16,6 @@ class IntroViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         lingoButton.hidden = true;
     }
 
@@ -28,43 +26,28 @@ class IntroViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func goButton() {
         
-        
         if (textField.text.isEmpty)
         {
-            //Alert: Please enter a name!
-        }
-        else
-        {
-            //Save name
+            //TODO: Alert Please enter a name!
+        } else {
             self.saveName()
             self.presentNextViewController()
         }
-        
     }
 
     @IBAction func takeASelf() {
         
     }
     
-    func saveName()
-    {
-        NSUserDefaults.standardUserDefaults().setValue(textField.text, forKey: "name");
-        self.addDataToParse();
-    }
-    
-    
-    func presentNextViewController()
-    {
-        var whereWhenVC = WhereWhenViewController(nibName:"WhereWhenViewController", bundle:nil);
-        var navigationController = UINavigationController(rootViewController: whereWhenVC);
-        self.presentViewController(navigationController, animated: true, completion: nil);
-    }
-    
     
     func textFieldDidEndEditing(textField: UITextField) {
-        if (!textField.text.isEmpty)
+        if ( !textField.text.isEmpty)
         {
+            lingoButton.alpha = 0.0;
             lingoButton.hidden = false;
+            UIView.animateWithDuration(1.5, animations: {
+                self.lingoButton.alpha = 1.0
+            })
         }
         
     }
@@ -79,9 +62,9 @@ class IntroViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder();
     }
     
-    func addDataToParse()
-    {
-        
+   
+    func saveName() {
+        NSUserDefaults.standardUserDefaults().setValue(textField.text, forKey: "name");
         var currentLocale = NSLocale.currentLocale()
         var currentDate = NSDate().descriptionWithLocale(currentLocale)
         
@@ -91,7 +74,7 @@ class IntroViewController: UIViewController, UITextFieldDelegate {
         userInfo.setObject(deviceToken, forKey: "deviceToken")
         userInfo.setObject(userName, forKey: "name")
         userInfo.setObject(-1, forKey: "status");
-//        userInfo.setObject(currentDate, forKey: "timeDate");
+        //        userInfo.setObject(currentDate, forKey: "timeDate");
         userInfo.setObject(-1, forKey: "diningHall");
         userInfo.saveInBackgroundWithBlock {
             (success: Bool!, error: NSError!) -> Void in
@@ -102,16 +85,14 @@ class IntroViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func presentNextViewController() {
+        var whereWhenVC = WhereWhenViewController(nibName:"WhereWhenViewController", bundle:nil);
+        var navigationController = UINavigationController(rootViewController: whereWhenVC);
+        self.presentViewController(navigationController, animated: true, completion: nil);
     }
-    */
+    
+
 
 }
