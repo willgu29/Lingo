@@ -10,6 +10,7 @@ import UIKit
 
 class WhereWhenViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    var reportBug = ReportBug()
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var diningHallPicker: UIPickerView!
     var dataSourcePicker: NSArray = ["De Neve", "B Plate", "Feast", "Covel", "Rende", "Cafe 1919", "B Cafe"]
@@ -54,6 +55,11 @@ class WhereWhenViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         var matchVC = MatchViewController(nibName:"MatchViewController", bundle:nil);
         self.pushToServerObject.pushToCloud.delegate = matchVC;
         self.navigationController?.pushViewController(matchVC, animated: true);
+    }
+    
+    @IBAction func feedbackButton() {
+        reportBug.reportBugWithVC(self);
+
     }
     
     func pushNotificationToAdmins() {

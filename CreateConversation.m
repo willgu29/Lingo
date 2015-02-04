@@ -21,7 +21,7 @@
     NSString *deviceTokenString = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     NSError *error = nil;
-    _conversation = [delegate.layerClient newConversationWithParticipants:[NSSet setWithArray:@[deviceTokenString, deviceTokenOther, @"Simulator", @ "Dashboard", convoID]] options:nil error:&error];
+    self.conversation = [delegate.layerClient newConversationWithParticipants:[NSSet setWithArray:@[deviceTokenString, deviceTokenOther, @"Simulator", @ "Dashboard", convoID]] options:nil error:&error];
     
     
 //    send a "dummy" message with the MIME type "text/invite". This would be an empty message that you never display to the users

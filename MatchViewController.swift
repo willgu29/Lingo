@@ -40,6 +40,11 @@ class MatchViewController: UIViewController, PullFromParseDelegate, PushToParseD
             pullFromParse.delegate = self;
             self.myTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self.pullFromParse, selector:"clientOneFunction", userInfo: nil, repeats: true)
             self.timeOutTimer = NSTimer.scheduledTimerWithTimeInterval(300, target: self, selector: "cancelTimer", userInfo: nil, repeats: false)
+            
+            //Send notification to random person + admins
+            //if random person is this // display alert saying previous client 1 is unavaiable sorry if you'd like to wait.
+            
+            
         }
         else if (delegate.dataObject.clientType == 2)
         {

@@ -39,9 +39,11 @@
     else if (delegate.dataObject.clientType == 2)
     {
         //LET CLIENT 2 MAKE CHATROOM SINCE THEY WILL GET RESULT QUICKER.
-        [_createConversationObject createDefaultConversationWith:delegate.dataObject.deviceTokenOther andConvoID:delegate.dataObject.conversationID];
-        [self setupLabelValues];
-        [self setupQueryController];
+//        [_createConversationObject createDefaultConversationWith:delegate.dataObject.deviceTokenOther andConvoID:delegate.dataObject.conversationID];
+//        [self setupLabelValues];
+//        [self setupQueryController];
+        [self queryForConversationWith:delegate.dataObject.deviceTokenOther andConvoID:delegate.dataObject.conversationID];
+
     }
 }
 
@@ -80,7 +82,7 @@
     query.predicate = [LYRPredicate predicateWithProperty:@"participants" operator:LYRPredicateOperatorIsEqualTo value:@[deviceTokenSelf,deviceTokenOther, @"Simulator", @"Dashboard" ,convoID]];
     
 //    query.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES]];
-    query.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES] ];
+    query.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO] ];//YES Feb 3rd
     
     NSError *error;
     NSOrderedSet *conversations = [delegate.layerClient executeQuery:query error:&error];
@@ -101,7 +103,17 @@
     }
     else
     {
-        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(retryMessageConvo) userInfo:nil repeats:NO];
+        if (delegate.dataObject.clientType == 1)
+        {
+            NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(retryMessageConvo) userInfo:nil repeats:NO];
+
+        }
+        else if (delegate.dataObject.clientType == 2)
+        {
+            [_createConversationObject createDefaultConversationWith:delegate.dataObject.deviceTokenOther andConvoID:delegate.dataObject.conversationID];
+            [self setupLabelValues];
+            [self setupQueryController];
+        }
     }
 }
                           
@@ -131,7 +143,7 @@
     
     [_createConversationObject sendMessage:@"has left the conversation"];
     
-    [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(deleteConvo) userInfo:nil repeats:NO];
+//    [NSTimer scheduledTimerWithTimeInterval:15 target:self selector:@selector(deleteConvo) userInfo:nil repeats:NO];
     
     
     FeedbackViewController *feedbackVC = [[FeedbackViewController alloc] initWithNibName:@"FeedbackViewController" bundle:nil];
