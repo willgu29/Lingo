@@ -67,38 +67,7 @@
     
 }
 
--(NSString *)generateUserIDString
-{
-    NSLog(@"Generating Unique ID");
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
-}
 
--(void)activiateLayer
-{
-    //LAYER KIT
-    NSUUID *appID = [[NSUUID alloc] initWithUUIDString:@"806c1028-a013-11e4-a3db-285a000000f4"];
-    self.layerClient = [LYRClient clientWithAppID:appID];
-    [self.layerClient connectWithCompletion:^(BOOL success, NSError *error) {
-        if (!success) {
-            NSLog(@"Failed to connect to Layer: %@", error);
-        } else {
-            //            NSString *userIDString = @"TestUser";
-            NSString *userIDString = [self generateUserIDString];
-            // Once connected, authenticate user.
-            // Check Authenticate step for authenticateLayerWithUserID source
-            [self authenticateLayerWithUserID:userIDString completion:^(BOOL success, NSError *error) {
-                if (!success) {
-                    NSLog(@"Failed Authenticating Layer Client with error:%@", error);
-                }
-            }];
-        }
-    }];
-    
-    
-    
-    //**************
-    
-}
 
 -(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
@@ -117,11 +86,13 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     [[NSUserDefaults standardUserDefaults] setObject:hexadecimalString forKey:@"deviceToken"];
     [self activiateLayer];
 }
-//
 //-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 //{
 //    //fetch proper completion handle for notification.
+//    
+//    
 //}
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -154,6 +125,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
 }
 
+
+
 -(void)deleteMatchFromParse
 {
     NSString *stringDeviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
@@ -166,6 +139,39 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
 #pragma mark -LAYER KIT
 
+
+-(NSString *)generateUserIDString
+{
+    NSLog(@"Generating Unique ID");
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
+}
+
+-(void)activiateLayer
+{
+    //LAYER KIT
+    NSUUID *appID = [[NSUUID alloc] initWithUUIDString:@"806c1028-a013-11e4-a3db-285a000000f4"];
+    self.layerClient = [LYRClient clientWithAppID:appID];
+    [self.layerClient connectWithCompletion:^(BOOL success, NSError *error) {
+        if (!success) {
+            NSLog(@"Failed to connect to Layer: %@", error);
+        } else {
+            //            NSString *userIDString = @"TestUser";
+            NSString *userIDString = [self generateUserIDString];
+            // Once connected, authenticate user.
+            // Check Authenticate step for authenticateLayerWithUserID source
+            [self authenticateLayerWithUserID:userIDString completion:^(BOOL success, NSError *error) {
+                if (!success) {
+                    NSLog(@"Failed Authenticating Layer Client with error:%@", error);
+                }
+            }];
+        }
+    }];
+    
+    
+    
+    //**************
+    
+}
 
 - (void)authenticateLayerWithUserID:(NSString *)userID completion:(void (^)(BOOL success, NSError * error))completion
 {
