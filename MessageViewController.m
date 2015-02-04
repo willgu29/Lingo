@@ -11,8 +11,12 @@
 #import "CreateConversation.h"
 #import "AppDelegate.h"
 #import "ConvertDiningHallNumberToString.h"
+
+const int MAX_CONVERSATION_MESSAGES_FROM_QUERY = 7; //Default 20?
+
 @interface MessageViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *typingIndicator;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 //@property (strong, nonatomic) SendMessages *sendMessageObject;
@@ -28,6 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    _typingIndicator.hidden = YES;
     _createConversationObject = [[CreateConversation alloc] init];
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
@@ -45,6 +50,10 @@
         [self queryForConversationWith:delegate.dataObject.deviceTokenOther andConvoID:delegate.dataObject.conversationID];
 
     }
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveTypingIndicator:)
+                                                 name:LYRConversationDidReceiveTypingIndicatorNotification
+                                               object:nil];
 }
 
 -(void)moveVC
@@ -64,11 +73,37 @@
 {
     [self moveVC];
     textField.text = @"";
+    [_createConversationObject.conversation sendTypingIndicator:LYRTypingDidBegin];
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     [self revertVC];
+    [_createConversationObject.conversation sendTypingIndicator:LYRTypingDidFinish];
+
+}
+
+-(void)didReceiveTypingIndicator:(NSNotification *)notification
+{
+    NSString *participantID = notification.userInfo[LYRTypingIndicatorParticipantUserInfoKey];
+    LYRTypingIndicator typingIndicator = [notification.userInfo[LYRTypingIndicatorValueUserInfoKey] unsignedIntegerValue];
+    
+    if (typingIndicator == LYRTypingDidBegin) {
+        NSLog(@"%@ is typing", [self convertDeviceIDToName:participantID]);
+        _typingIndicator.alpha = 0;
+        _typingIndicator.hidden = NO;
+        [UIView animateWithDuration:1.5 animations:^{
+            _typingIndicator.alpha = 1;
+        }];
+        _typingIndicator.text = [NSString stringWithFormat:@"%@ is typing...", [self convertDeviceIDToName:participantID]];
+    }
+    else {
+        NSLog(@"Typing Stopped");
+        _typingIndicator.alpha = 1;
+        [UIView animateWithDuration:1 animations:^{
+            _typingIndicator.alpha = 0;
+        }];
+    }
 }
 
 
@@ -200,7 +235,8 @@
     LYRQuery *query = [LYRQuery queryWithClass:[LYRMessage class]];
     query.predicate = [LYRPredicate predicateWithProperty:@"conversation" operator:LYRPredicateOperatorIsEqualTo value:_createConversationObject.conversation];
     query.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES]];
-    
+    query.limit = MAX_CONVERSATION_MESSAGES_FROM_QUERY;
+    query.offset = 0;
     // Set up query controller
     self.queryController = [delegate.layerClient queryControllerWithQuery:query];
     self.queryController.delegate = self;
