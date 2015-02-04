@@ -38,15 +38,12 @@ const int MAX_CONVERSATION_MESSAGES_FROM_QUERY = 7; //Default 20?
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     if (delegate.dataObject.clientType == 1)
     {
-        //LET Client 1 query for chatroom just created by client 2
+        //LET Client 1 query for chatroom just created by client 2 (if none existed)
         [self queryForConversationWith:delegate.dataObject.deviceTokenOther andConvoID:delegate.dataObject.conversationID];
     }
     else if (delegate.dataObject.clientType == 2)
     {
         //LET CLIENT 2 MAKE CHATROOM SINCE THEY WILL GET RESULT QUICKER.
-//        [_createConversationObject createDefaultConversationWith:delegate.dataObject.deviceTokenOther andConvoID:delegate.dataObject.conversationID];
-//        [self setupLabelValues];
-//        [self setupQueryController];
         [self queryForConversationWith:delegate.dataObject.deviceTokenOther andConvoID:delegate.dataObject.conversationID];
 
     }
@@ -54,6 +51,18 @@ const int MAX_CONVERSATION_MESSAGES_FROM_QUERY = 7; //Default 20?
                                              selector:@selector(didReceiveTypingIndicator:)
                                                  name:LYRConversationDidReceiveTypingIndicatorNotification
                                                object:nil];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+//    if (_tableView.contentSize.height > _tableView.frame.size.height)
+//    {
+//        CGPoint offset = CGPointMake(0, _tableView.contentSize.height -     _tableView.frame.size.height);
+//        [self.tableView setContentOffset:offset animated:YES];
+//    }
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.queryController numberOfObjectsInSection:0]-1 inSection:0];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+
 }
 
 -(void)moveVC
@@ -235,8 +244,8 @@ const int MAX_CONVERSATION_MESSAGES_FROM_QUERY = 7; //Default 20?
     LYRQuery *query = [LYRQuery queryWithClass:[LYRMessage class]];
     query.predicate = [LYRPredicate predicateWithProperty:@"conversation" operator:LYRPredicateOperatorIsEqualTo value:_createConversationObject.conversation];
     query.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES]];
-    query.limit = MAX_CONVERSATION_MESSAGES_FROM_QUERY;
-    query.offset = 0;
+//    query.limit = MAX_CONVERSATION_MESSAGES_FROM_QUERY;
+//    query.offset = 0;
     // Set up query controller
     self.queryController = [delegate.layerClient queryControllerWithQuery:query];
     self.queryController.delegate = self;
@@ -284,6 +293,7 @@ const int MAX_CONVERSATION_MESSAGES_FROM_QUERY = 7; //Default 20?
         default:
             break;
     }
+   
 }
 
 - (void)queryControllerDidChangeContent:(LYRQueryController *)queryController
@@ -293,6 +303,7 @@ const int MAX_CONVERSATION_MESSAGES_FROM_QUERY = 7; //Default 20?
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+   
     // Return number of objects in queryController
     return [self.queryController numberOfObjectsInSection:section];
 }
@@ -330,7 +341,7 @@ const int MAX_CONVERSATION_MESSAGES_FROM_QUERY = 7; //Default 20?
     {
         cell.textLabel.text = [NSString stringWithFormat:@"%@: %@",[self convertDeviceIDToName:[message sentByUserID]], messageString];
     }
-    
+
 //    cell.textLabel.text = [NSString stringWithFormat:@"%@: %@",[self convertDeviceIDToName:[message sentByUserID]], [[NSString alloc] initWithData:messagePart.data encoding:NSUTF8StringEncoding]];
 
 
