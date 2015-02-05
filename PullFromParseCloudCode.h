@@ -19,7 +19,8 @@
 @interface PullFromParseCloudCode : NSObject
 
 @property (nonatomic, assign) id delegate;
--(void)clientOneFunction;
+//-(void)clientOneFunction;
+-(void)queryParseForMatchStatusTwo;
 -(void)deleteMatchFromParse;
 
 //@property (nonatomic, strong) NSString *diningHallOtherIntAsString;

@@ -12,12 +12,10 @@
 
 @implementation PullFromParseCloudCode
 
--(void)clientOneFunction
+-(void)queryParseForMatchStatusTwo
 {
-    NSLog(@"client one function");
     
     NSString *stringDeviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
-    //Query parse database every 5 seconds for 2 minutes then cancel request
     PFQuery *query = [PFQuery queryWithClassName:@"Match"];
     [query whereKey:@"deviceToken" equalTo:stringDeviceToken];
     PFObject *visitPF = [query getFirstObject];
@@ -39,20 +37,8 @@
         delegate.dataObject.diningHallOtherAsStringInt = visitPF[@"diningHallOther"];
         delegate.dataObject.usernameOther = visitPF[@"usernameOther"];
         delegate.dataObject.conversationID =  [NSString stringWithFormat:@"%@%@", delegate.dataObject.usernameOther,[[NSUserDefaults standardUserDefaults] objectForKey:@"name"]];
-
-        //Going to delete in deleteMatchFromParse instead
-//        [visitPF deleteInBackground];
-
-        //present message screen!
-        //Someone found a match and is waiting for you!
-        //Switch to messaging
-        //Switch match to value 3 or something
         [_delegate matchFound];
 
-    }
-    else
-    {
-        //Ignore
     }
     
 }

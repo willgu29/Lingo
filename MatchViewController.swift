@@ -11,8 +11,8 @@ import UIKit
 class MatchViewController: UIViewController, PullFromParseDelegate, PushToParseDelegate {
 
     var pullFromParse = PullFromParseCloudCode()
-    var myTimer: NSTimer?
-    var timeOutTimer: NSTimer?
+    var myTimer: NSTimer? //maps to selector queryParseForMatchStatusTwo in object pullFromParse
+    var timeOutTimer: NSTimer? //maps to selector matchTimeout in object self
     var delegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     @IBOutlet var spinner: UIActivityIndicatorView?
     
@@ -36,12 +36,14 @@ class MatchViewController: UIViewController, PullFromParseDelegate, PushToParseD
     {
         if (delegate.dataObject.clientType == 1)
         {
+            var matchStatusInfo = "Match Not Found"
+            
             NSLog("Client type 1");
             pullFromParse.delegate = self;
-            self.myTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self.pullFromParse, selector:"clientOneFunction", userInfo: nil, repeats: true)
-            self.timeOutTimer = NSTimer.scheduledTimerWithTimeInterval(300, target: self, selector: "cancelTimer", userInfo: nil, repeats: false)
+            self.myTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self.pullFromParse, selector:"queryParseForMatchStatusTwo", userInfo: nil, repeats: true)
+            self.timeOutTimer = NSTimer.scheduledTimerWithTimeInterval(300, target: self, selector:"matchTimeout:", userInfo: matchStatusInfo , repeats: false)
             
-            //Send notification to random person + admins
+            //TODO: Send notification to random person + admins
             //if random person is this // display alert saying previous client 1 is unavaiable sorry if you'd like to wait.
             
             
@@ -60,6 +62,32 @@ class MatchViewController: UIViewController, PullFromParseDelegate, PushToParseD
         self.myTimer?.invalidate();
         self.timeOutTimer?.invalidate();
         pullFromParse.deleteMatchFromParse();
+        
+    }
+    
+    //User could not find a match
+    func matchTimeout(timer:NSTimer) {
+        
+        
+        if (timer.userInfo != nil)
+        {
+            var matchStatus: NSString = timer.userInfo as NSString
+            NSLog("Timer info: %@", matchStatus);
+            if (matchStatus == "Match Not Found")
+            {
+                self.cancelTimer()
+                self.navigationController?.popViewControllerAnimated(true)
+                let alert = UIAlertView();
+                alert.title = "We're Sorry"
+                alert.message = "We could not find you a match at this time"
+                alert.addButtonWithTitle(":(");
+                alert.show();
+       
+            }
+        }
+
+      
+        
     }
     
    
