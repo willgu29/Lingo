@@ -32,6 +32,13 @@ const int MAX_CONVERSATION_MESSAGES_FROM_QUERY = 7; //Default 20?
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    //TODO: Add dynamic cell height for ios 7 currently this handles ios 8
+    _tableView.estimatedRowHeight = 44.0;
+    if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1 ){
+        _tableView.rowHeight = UITableViewAutomaticDimension;
+    }
+    //*******
+
     _typingIndicator.hidden = YES;
     _createConversationObject = [[CreateConversation alloc] init];
     
@@ -313,7 +320,6 @@ const int MAX_CONVERSATION_MESSAGES_FROM_QUERY = 7; //Default 20?
     static NSString *simpleTableIdentifier = @"SimpleTableCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
