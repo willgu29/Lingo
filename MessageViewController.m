@@ -33,10 +33,13 @@ const int MAX_CONVERSATION_MESSAGES_FROM_QUERY = 7; //Default 20?
     [super viewDidLoad];
 
     //TODO: Add dynamic cell height for ios 7 currently this handles ios 8
-    _tableView.estimatedRowHeight = 44.0;
-    if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1 ){
-        _tableView.rowHeight = UITableViewAutomaticDimension;
-    }
+    
+    //Was crashing on iOS 7 still
+//    _tableView.estimatedRowHeight = 44.0;
+//    if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1 ){
+//        _tableView.rowHeight = UITableViewAutomaticDimension;
+//    }
+    
     //*******
 
     _typingIndicator.hidden = YES;
@@ -67,8 +70,11 @@ const int MAX_CONVERSATION_MESSAGES_FROM_QUERY = 7; //Default 20?
 //        CGPoint offset = CGPointMake(0, _tableView.contentSize.height -     _tableView.frame.size.height);
 //        [self.tableView setContentOffset:offset animated:YES];
 //    }
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.queryController numberOfObjectsInSection:0]-1 inSection:0];
-    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+//
+    
+    //Crashes on new conversation because there are no messages! (FIX THIS)d
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.queryController numberOfObjectsInSection:0]-1 inSection:0];
+//    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 
 }
 
@@ -264,6 +270,8 @@ const int MAX_CONVERSATION_MESSAGES_FROM_QUERY = 7; //Default 20?
     } else {
         NSLog(@"Query failed with error: %@", error);
     }
+    
+    [_tableView reloadData];
 }
 
 - (void)queryControllerWillChangeContent:(LYRQueryController *)queryController
