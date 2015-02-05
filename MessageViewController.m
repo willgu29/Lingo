@@ -162,7 +162,7 @@ const int MAX_CONVERSATION_MESSAGES_FROM_QUERY = 7; //Default 20?
     {
         if (delegate.dataObject.clientType == 1)
         {
-            NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(retryMessageConvo) userInfo:nil repeats:NO];
+            NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(retryMessageConvo) userInfo:nil repeats:NO];
 
         }
         else if (delegate.dataObject.clientType == 2)
